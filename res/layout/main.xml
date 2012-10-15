@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        >
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:stretchColumns="1"
+            >
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Display"
+                    android:layout_span="2"
+                    android:layout_marginTop="0dp"
+                    style="@style/Widget.Category"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resolution [px]:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_resolution_px"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1x1"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resolution [dp]:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_resolution_dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1x1"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Usable resolution [dp]:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_resolution_qualifier"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1x1"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Smallest width [dp]:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_min_width"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1x1"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Density:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_density"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1px/dp"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DPI:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_dpi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1px/dp"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Size qualifier:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_size_qualifier"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="large"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Orientation:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_orientation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="portrait"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Navigation"
+                    android:layout_span="2"
+                    style="@style/Widget.Category"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Touchscreen:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_touchscreen"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Navigation type:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_navigation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User preferences"
+                    android:layout_span="2"
+                    style="@style/Widget.Category"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Locale:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_locale"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Font scale:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_font_scale"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IMSI"
+                    android:layout_span="2"
+                    style="@style/Widget.Category"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IMSI:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_imsi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MCC (Mobile Country Code):"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_mcc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MNC (Mobile Network Code):"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_mnc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    />
+        </TableRow>
+    </TableLayout>
+</ScrollView>
