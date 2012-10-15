@@ -48,6 +48,7 @@ public class MainActivity extends Activity {
 	private TextView mBoard;
 	private TextView mSerialNumber;
 	private TextView mHardware;
+	private TextView mInstructionSet;
 
 	/**
 	 * Called when the activity is first created.
@@ -93,6 +94,7 @@ public class MainActivity extends Activity {
 		mBoard = (TextView) findViewById(R.id.text_board);
 		mSerialNumber = (TextView) findViewById(R.id.text_serial_number);
 		mHardware = (TextView) findViewById(R.id.text_hardware);
+		mInstructionSet = (TextView) findViewById(R.id.text_instruction_set);
 
 		mConfiguration = getResources().getConfiguration();
 		initDisplayFields();
@@ -201,5 +203,6 @@ public class MainActivity extends Activity {
 		mBoard.setText(Build.BOARD);
 		mSerialNumber.setText(Build.SERIAL);
 		mHardware.setText(Build.HARDWARE);
+		mInstructionSet.setText(Build.CPU_ABI + ", " + Build.CPU_ABI2);
 	}
 }

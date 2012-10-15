@@ -33,6 +33,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1x1"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -49,6 +50,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1x1"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -64,6 +66,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1x1"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -80,6 +83,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1x1"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -96,6 +100,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1px/dp"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -112,6 +117,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="1px/dp"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -128,6 +134,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="large"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -145,6 +152,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="portrait"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -171,6 +179,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -186,6 +195,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -212,6 +222,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -227,6 +238,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -253,6 +265,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -268,6 +281,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -283,6 +297,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -309,6 +324,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -324,6 +340,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -339,6 +356,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -354,6 +372,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -369,6 +388,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -384,6 +404,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -399,6 +420,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -414,6 +436,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
@@ -440,6 +463,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -455,6 +479,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -470,6 +495,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -485,6 +511,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -500,6 +527,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -515,6 +543,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -530,6 +559,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
         <TableRow android:layout_width="match_parent"
@@ -545,6 +575,23 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="unknown"
+                    style="@style/Widget.Value"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Instruction set:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_instruction_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="unknown"
+                    style="@style/Widget.Value"
                     />
         </TableRow>
 
