@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class MainActivity extends Activity {
 	private TextView mBuildTags;
 	private TextView mBootloader;
 	private TextView mRadio;
+	private TextView mHost;
+	private TextView mUser;
 
 	private TextView mManufacturer;
 	private TextView mBrand;
@@ -79,6 +82,8 @@ public class MainActivity extends Activity {
 		mBuildTags = (TextView) findViewById(R.id.text_build_tags);
 		mBootloader = (TextView) findViewById(R.id.text_bootloader);
 		mRadio = (TextView) findViewById(R.id.text_radio);
+		mHost = (TextView) findViewById(R.id.text_host);
+		mUser = (TextView) findViewById(R.id.text_user);
 
 		mManufacturer = (TextView) findViewById(R.id.text_manufacturer);
 		mBrand = (TextView) findViewById(R.id.text_brand);
@@ -182,7 +187,9 @@ public class MainActivity extends Activity {
 		mId.setText(Build.ID);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
-		mRadio.setText(Build.getRadioVersion());
+		mRadio.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? "unknown" : Build.getRadioVersion());
+		mHost.setText(Build.HOST);
+		mUser.setText(Build.USER);
 	}
 
 	private void initDeviceFields() {
