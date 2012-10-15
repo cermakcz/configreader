@@ -32,7 +32,19 @@ public class MainActivity extends Activity {
 
 	private TextView mVersion;
 	private TextView mApiLevel;
+	private TextView mId;
 	private TextView mBuildTags;
+	private TextView mBootloader;
+	private TextView mRadio;
+
+	private TextView mManufacturer;
+	private TextView mBrand;
+	private TextView mModel;
+	private TextView mProduct;
+	private TextView mDesign;
+	private TextView mBoard;
+	private TextView mSerialNumber;
+	private TextView mHardware;
 
 	/**
 	 * Called when the activity is first created.
@@ -63,7 +75,19 @@ public class MainActivity extends Activity {
 
 		mVersion = (TextView) findViewById(R.id.text_version);
 		mApiLevel = (TextView) findViewById(R.id.text_api_level);
+		mId = (TextView) findViewById(R.id.text_id);
 		mBuildTags = (TextView) findViewById(R.id.text_build_tags);
+		mBootloader = (TextView) findViewById(R.id.text_bootloader);
+		mRadio = (TextView) findViewById(R.id.text_radio);
+
+		mManufacturer = (TextView) findViewById(R.id.text_manufacturer);
+		mBrand = (TextView) findViewById(R.id.text_brand);
+		mModel = (TextView) findViewById(R.id.text_model);
+		mProduct = (TextView) findViewById(R.id.text_product);
+		mDesign = (TextView) findViewById(R.id.text_design);
+		mBoard = (TextView) findViewById(R.id.text_board);
+		mSerialNumber = (TextView) findViewById(R.id.text_serial_number);
+		mHardware = (TextView) findViewById(R.id.text_hardware);
 
 		mConfiguration = getResources().getConfiguration();
 		initDisplayFields();
@@ -71,7 +95,9 @@ public class MainActivity extends Activity {
 		initUserPreferencesFields();
 		initImsiFields();
 		initAndroidSystemFields();
+		initDeviceFields();
 	}
+
 
 	private void initDisplayFields() {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -153,6 +179,20 @@ public class MainActivity extends Activity {
 	private void initAndroidSystemFields() {
 		mVersion.setText(Build.VERSION.RELEASE + " " + Build.VERSION.CODENAME + ", " + Build.DISPLAY);
 		mApiLevel.setText(Build.VERSION.SDK_INT + "");
+		mId.setText(Build.ID);
 		mBuildTags.setText(Build.TAGS);
+		mBootloader.setText(Build.BOOTLOADER);
+		mRadio.setText(Build.getRadioVersion());
+	}
+
+	private void initDeviceFields() {
+		mManufacturer.setText(Build.MANUFACTURER);
+		mBrand.setText(Build.BRAND);
+		mModel.setText(Build.MODEL);
+		mProduct.setText(Build.PRODUCT);
+		mDesign.setText(Build.DEVICE);
+		mBoard.setText(Build.BOARD);
+		mSerialNumber.setText(Build.SERIAL);
+		mHardware.setText(Build.HARDWARE);
 	}
 }
