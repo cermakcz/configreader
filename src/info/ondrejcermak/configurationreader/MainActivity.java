@@ -2,6 +2,7 @@ package info.ondrejcermak.configurationreader;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
@@ -28,6 +29,10 @@ public class MainActivity extends Activity {
 	private TextView mImsi;
 	private TextView mMcc;
 	private TextView mMnc;
+
+	private TextView mVersion;
+	private TextView mApiLevel;
+	private TextView mBuildTags;
 
 	/**
 	 * Called when the activity is first created.
@@ -56,13 +61,17 @@ public class MainActivity extends Activity {
 		mMcc = (TextView) findViewById(R.id.text_mcc);
 		mMnc = (TextView) findViewById(R.id.text_mnc);
 
+		mVersion = (TextView) findViewById(R.id.text_version);
+		mApiLevel = (TextView) findViewById(R.id.text_api_level);
+		mBuildTags = (TextView) findViewById(R.id.text_build_tags);
+
 		mConfiguration = getResources().getConfiguration();
 		initDisplayFields();
 		initNavigationFields();
 		initUserPreferencesFields();
 		initImsiFields();
+		initAndroidSystemFields();
 	}
-
 
 	private void initDisplayFields() {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -139,5 +148,11 @@ public class MainActivity extends Activity {
 				telephonyManager.getSubscriberId());
 		mMcc.setText(mConfiguration.mcc + "");
 		mMnc.setText(mConfiguration.mnc + "");
+	}
+
+	private void initAndroidSystemFields() {
+		mVersion.setText(Build.VERSION.RELEASE + " " + Build.VERSION.CODENAME + ", " + Build.DISPLAY);
+		mApiLevel.setText(Build.VERSION.SDK_INT + "");
+		mBuildTags.setText(Build.TAGS);
 	}
 }
