@@ -1,4 +1,8 @@
 <resources>
+    <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
+        <item name="android:background">@drawable/bg_actionbar</item>
+    </style>
+
     <style name="Widget.Category" parent="android:TextAppearance.Holo.Medium">
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">10dp</item>

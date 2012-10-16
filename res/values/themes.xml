@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.Reader" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
+
+    </style>
+</resources>
