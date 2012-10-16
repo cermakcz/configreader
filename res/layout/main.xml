@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
         >
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:orientation="vertical"
                   android:padding="10dp">
         <TextView
                 android:id="@+id/text_device_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="device_name"
+                android:text="@string/unknown"
                 android:layout_marginTop="0dp"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textStyle="bold"
@@ -46,7 +46,7 @@
                         android:id="@+id/text_resolution_px"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1x1"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -63,7 +63,7 @@
                         android:id="@+id/text_resolution_dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1x1"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -79,7 +79,7 @@
                         android:id="@+id/text_resolution_qualifier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1x1"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -96,7 +96,7 @@
                         android:id="@+id/text_min_width"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1x1"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -113,7 +113,7 @@
                         android:id="@+id/text_density"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1 px/dp"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -130,7 +130,7 @@
                         android:id="@+id/text_dpi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1 dpi"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -147,7 +147,7 @@
                         android:id="@+id/text_size_qualifier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="large"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -165,7 +165,7 @@
                         android:id="@+id/text_orientation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="portrait"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -192,7 +192,7 @@
                         android:id="@+id/text_touchscreen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -208,7 +208,7 @@
                         android:id="@+id/text_navigation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -224,7 +224,7 @@
                         android:id="@+id/text_keyboard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -251,7 +251,7 @@
                         android:id="@+id/text_locale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -267,7 +267,7 @@
                         android:id="@+id/text_font_scale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -294,7 +294,7 @@
                         android:id="@+id/text_imsi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -310,7 +310,7 @@
                         android:id="@+id/text_mcc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -326,7 +326,7 @@
                         android:id="@+id/text_mnc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="true"
+                        android:text="@string/unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
