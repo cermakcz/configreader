@@ -3,7 +3,7 @@
     <string name="app_name">Config Reader</string>
 
     <string name="menu_share">Share</string>
-    <string name="menu_save">Save</string>
+    <string name="menu_save">Save to file</string>
 
     <string name="category_display">Display</string>
     <string name="resolution_px">Resolution [px]:</string>

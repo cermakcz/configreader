@@ -1,17 +1,18 @@
 <resources>
-    <style name="Widget.Category" parent="android:TextAppearance.Medium">
+    <style name="Widget.Category" parent="android:TextAppearance.Holo.Medium">
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">3dp</item>
         <item name="android:background">@drawable/bottom_border</item>
         <item name="android:paddingBottom">3dp</item>
     </style>
-    <style name="Widget.Label" parent="android:TextAppearance.Small">
+    <style name="Widget.Label" parent="android:TextAppearance.Holo.Small">
         <item name="android:layout_marginRight">10dp</item>
-        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
-    <style name="Widget.Value" parent="android:TextAppearance.Small">
+    <style name="Widget.Value" parent="android:TextAppearance.Holo.Small">
         <item name="android:ellipsize">end</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 </resources>
