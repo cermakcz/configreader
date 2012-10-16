@@ -353,7 +353,7 @@
                         android:id="@+id/text_version"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -369,7 +369,7 @@
                         android:id="@+id/text_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -385,7 +385,7 @@
                         android:id="@+id/text_api_level"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -401,7 +401,7 @@
                         android:id="@+id/text_build_tags"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -417,7 +417,7 @@
                         android:id="@+id/text_bootloader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -433,7 +433,7 @@
                         android:id="@+id/text_radio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -449,7 +449,7 @@
                         android:id="@+id/text_host"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -465,7 +465,7 @@
                         android:id="@+id/text_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -492,7 +492,7 @@
                         android:id="@+id/text_manufacturer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -508,7 +508,7 @@
                         android:id="@+id/text_brand"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -524,7 +524,7 @@
                         android:id="@+id/text_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -540,7 +540,7 @@
                         android:id="@+id/text_product"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -556,7 +556,7 @@
                         android:id="@+id/text_design"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -572,7 +572,7 @@
                         android:id="@+id/text_board"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -588,7 +588,7 @@
                         android:id="@+id/text_hardware"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -604,7 +604,7 @@
                         android:id="@+id/text_serial_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
@@ -620,7 +620,7 @@
                         android:id="@+id/text_instruction_set"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="unknown"
+                        android:text="R.string.unknown"
                         style="@style/Widget.Value"
                         />
             </TableRow>
