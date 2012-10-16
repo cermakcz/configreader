@@ -1,16 +1,28 @@
 package info.ondrejcermak.configurationreader;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.widget.TextView;
+import android.util.Log;
+import android.util.Printer;
+import android.util.StringBuilderPrinter;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MainActivity extends Activity {
 	private Configuration mConfiguration;
+	private ShareActionProvider mShareActionProvider;
 
 	private TextView mResolutionPx;
 	private TextView mResolutionDp;
@@ -107,6 +119,28 @@ public class MainActivity extends Activity {
 		initDeviceFields();
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
+				.getActionProvider();
+		mShareActionProvider.setShareIntent(getShareIntent());
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_share:
+				getShareIntent();
+				return true;
+			case R.id.menu_save:
+				saveToFile();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
 
 	private void initDisplayFields() {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -114,9 +148,9 @@ public class MainActivity extends Activity {
 		mResolutionDp.setText((int) ((float) metrics.widthPixels / metrics.density) + " x " +
 				(int) ((float) metrics.heightPixels / metrics.density) + " dp");
 		mDensity.setText(metrics.density + " px/dp");
-		mDpi.setText(
-				metrics.densityDpi + " dpi; x = " + (int) metrics.xdpi + " dpi, y = " + (int) metrics.ydpi +
-						" dpi");
+		mDpi.setText(metrics.densityDpi + " dpi; x = " + (int) metrics.xdpi + " dpi, " +
+				"y = " + (int) metrics.ydpi +
+				" dpi");
 
 		mResolutionQualifier
 				.setText(mConfiguration.screenWidthDp + " x " + mConfiguration.screenHeightDp +
@@ -203,7 +237,9 @@ public class MainActivity extends Activity {
 		mId.setText(Build.ID);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
-		mRadio.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? "unknown" : Build.getRadioVersion());
+		mRadio
+				.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? "unknown" : Build.getRadioVersion
+						());
 		mHost.setText(Build.HOST);
 		mUser.setText(Build.USER);
 	}
@@ -218,5 +254,93 @@ public class MainActivity extends Activity {
 		mSerialNumber.setText(Build.SERIAL);
 		mHardware.setText(Build.HARDWARE);
 		mInstructionSet.setText(Build.CPU_ABI + ", " + Build.CPU_ABI2);
+	}
+
+	private Intent getShareIntent() {
+		StringBuilder text = createConfigurationText();
+
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+
+		String subject = "Configuration of " + Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL;
+		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+		intent.putExtra(Intent.EXTRA_TITLE, subject);
+		intent.putExtra(Intent.EXTRA_TEXT, text.toString());
+		return intent;
+	}
+
+	private void saveToFile()  {
+		String state = Environment.getExternalStorageState();
+		if(state.equals(Environment.MEDIA_MOUNTED)) {
+			String name = "config_" + Build.MANUFACTURER.toUpperCase() + "_" + Build.MODEL + ".txt";
+			name.replaceAll(" ", "_");
+			File file = new File(Environment.getExternalStorageDirectory(), name);
+			try {
+				FileWriter writer = new FileWriter(file);
+				writer.write(createConfigurationText().toString());
+				writer.flush();
+				writer.close();
+				Toast.makeText(this, getString(R.string.configuration_saved, name), Toast.LENGTH_SHORT).show();
+			} catch (IOException e) {
+				Log.e("ConfigReader", "Can't write to file.", e);
+				Toast.makeText(this, R.string.error_saving_file, Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			Toast.makeText(this, R.string.error_storage_not_available, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private StringBuilder createConfigurationText() {
+		TableLayout table = (TableLayout) findViewById(R.id.table);
+		int longestLineLength = 0;
+		int longestLabelLength = 0;
+		for (int i = 0; i < table.getChildCount(); i++) {
+			TableRow row = (TableRow) table.getChildAt(i);
+			if (row.getChildCount() == 2) {
+				int labelLength = ((TextView) row.getChildAt(0)).getText().length();
+				if (labelLength > longestLabelLength) {
+					longestLabelLength = labelLength;
+				}
+
+				int lineLength = labelLength + ((TextView) row.getChildAt(1)).getText().length() + 2;
+				if (lineLength > longestLineLength) {
+					longestLineLength = lineLength;
+				}
+			}
+		}
+
+		StringBuilder text = new StringBuilder();
+		String header = "Configuration of " + Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL;
+		text.append(header);
+		text.append("\n");
+		for (int j = 0; j < longestLineLength; j++) {
+			text.append("=");
+		}
+		text.append("\n\n");
+
+		for (int i = 0; i < table.getChildCount(); i++) {
+			TableRow row = (TableRow) table.getChildAt(i);
+			if (row.getChildCount() == 1) {
+				if (i > 0) {
+					text.append("\n");
+				}
+				text.append(((TextView) row.getChildAt(0)).getText());
+				text.append("\n");
+				for (int j = 0; j < longestLineLength; j++) {
+					text.append("-");
+				}
+				text.append("\n");
+			} else {
+				CharSequence label = ((TextView) row.getChildAt(0)).getText();
+				text.append(label);
+				int labelLength = label.length();
+				for (int j = 0; j <= longestLabelLength - labelLength; j++) {
+					text.append(" ");
+				}
+				text.append(((TextView) row.getChildAt(1)).getText());
+				text.append("\n");
+			}
+		}
+		return text;
 	}
 }

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Config Reader</string>
+
+    <string name="error_saving_file">An error occured, file was NOT saved.</string>
+    <string name="error_storage_not_available">External storage is not available at the moment.</string>
+    <string name="configuration_saved">Configuration saved as \'%s\' to the external storage.</string>
 </resources>
