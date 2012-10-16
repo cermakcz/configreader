@@ -15,6 +15,7 @@
                 android:layout_marginTop="0dp"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textStyle="bold"
+                android:textColor="@android:color/holo_blue_light"
                 />
         <TableLayout
                 android:id="@+id/table"
