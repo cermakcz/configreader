@@ -1,0 +1,10 @@
+.idea/
+bin/
+gen/
+out/
+ant.properties
+keystore
+keystore.passwd
+local.properties
+my_release_build.sh
+*.iml
