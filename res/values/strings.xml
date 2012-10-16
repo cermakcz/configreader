@@ -26,8 +26,8 @@
 
     <string name="category_imsi">IMSI</string>
     <string name="imsi">IMSI:</string>
-    <string name="mcc">MCC (Mobile Country Code):</string>
-    <string name="mnc">MNC (Mobile Network Code):</string>
+    <string name="mcc">MCC:</string>
+    <string name="mnc">MNC:</string>
 
     <string name="category_android_system">Android system</string>
     <string name="version">Version:</string>
