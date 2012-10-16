@@ -22,6 +22,8 @@ public class MainActivity extends Activity {
 	private Configuration mConfiguration;
 	private ShareActionProvider mShareActionProvider;
 
+	private TextView mDeviceName;
+
 	private TextView mResolutionPx;
 	private TextView mResolutionDp;
 	private TextView mResolutionQualifier;
@@ -69,6 +71,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		mDeviceName = (TextView) findViewById(R.id.text_device_name);
+
 		mResolutionPx = (TextView) findViewById(R.id.text_resolution_px);
 		mResolutionDp = (TextView) findViewById(R.id.text_resolution_dp);
 		mResolutionQualifier = (TextView) findViewById(R.id.text_resolution_qualifier);
@@ -109,6 +113,7 @@ public class MainActivity extends Activity {
 		mInstructionSet = (TextView) findViewById(R.id.text_instruction_set);
 
 		mConfiguration = getResources().getConfiguration();
+		mDeviceName.setText(Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL);
 		initDisplayFields();
 		initNavigationFields();
 		initUserPreferencesFields();
