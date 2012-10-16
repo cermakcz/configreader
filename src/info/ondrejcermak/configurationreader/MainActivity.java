@@ -273,7 +273,7 @@ public class MainActivity extends Activity {
 		String state = Environment.getExternalStorageState();
 		if(state.equals(Environment.MEDIA_MOUNTED)) {
 			String name = "config_" + Build.MANUFACTURER.toUpperCase() + "_" + Build.MODEL + ".txt";
-			name.replaceAll(" ", "_");
+			name = name.replaceAll(" ", "_");
 			File file = new File(Environment.getExternalStorageDirectory(), name);
 			try {
 				FileWriter writer = new FileWriter(file);
