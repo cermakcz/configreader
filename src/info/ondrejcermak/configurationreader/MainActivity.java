@@ -10,8 +10,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.Printer;
-import android.util.StringBuilderPrinter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
@@ -159,23 +157,23 @@ public class MainActivity extends Activity {
 		int screenSize = mConfiguration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 		String sizeQualifier = "";
 		if (screenSize == Configuration.SCREENLAYOUT_SIZE_SMALL) {
-			sizeQualifier = "small";
+			sizeQualifier = getString(R.string.screensize_small);
 		} else if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-			sizeQualifier = "normal";
+			sizeQualifier = getString(R.string.screensize_normal);
 		} else if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-			sizeQualifier = "large";
+			sizeQualifier = getString(R.string.screensize_large);
 		} else if (screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-			sizeQualifier = "xlarge";
+			sizeQualifier = getString(R.string.screensize_xlarge);
 		}
 		mSizeQualifier.setText(sizeQualifier);
 
 		String orientation = "";
 		if (mConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			orientation = "landscape";
+			orientation = getString(R.string.orientation_landscape);
 		} else if (mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-			orientation = "portrait";
+			orientation = getString(R.string.oritentation_portrait);
 		} else {
-			orientation = "undefined";
+			orientation = getString(R.string.unknown);
 		}
 		mOrientation.setText(orientation);
 	}
@@ -183,37 +181,37 @@ public class MainActivity extends Activity {
 	private void initNavigationFields() {
 		String touchscreen = "";
 		if (mConfiguration.touchscreen == Configuration.TOUCHSCREEN_FINGER) {
-			touchscreen = "finger";
+			touchscreen = getString(R.string.touchscreen_finger);
 		} else if (mConfiguration.touchscreen == Configuration.TOUCHSCREEN_NOTOUCH) {
-			touchscreen = "no touch";
+			touchscreen = getString(R.string.touchscreen_no_touch);
 		} else {
-			touchscreen = "undefined";
+			touchscreen = getString(R.string.unknown);
 		}
 		mTouchscreen.setText(touchscreen);
 
 		String navigation = "";
 		if (mConfiguration.navigation == Configuration.NAVIGATION_DPAD) {
-			navigation = "dpad";
+			navigation = getString(R.string.navigation_dpad);
 		} else if (mConfiguration.navigation == Configuration.NAVIGATION_NONAV) {
-			navigation = "no navigation";
+			navigation = getString(R.string.navigation_no_navigation);
 		} else if (mConfiguration.navigation == Configuration.NAVIGATION_TRACKBALL) {
-			navigation = "trackball";
+			navigation = getString(R.string.navigation_trackball);
 		} else if (mConfiguration.navigation == Configuration.NAVIGATION_WHEEL) {
-			navigation = "wheel";
+			navigation = getString(R.string.navigation_wheel);
 		} else {
-			navigation = "undefined";
+			navigation = getString(R.string.unknown);
 		}
 		mNavigation.setText(navigation);
 
 		String keyboard = "";
 		if (mConfiguration.keyboard == Configuration.KEYBOARD_12KEY) {
-			keyboard = "12 keys";
+			keyboard = getString(R.string.keyboard_12_keys);
 		} else if (mConfiguration.keyboard == Configuration.KEYBOARD_QWERTY) {
-			keyboard = "querty";
+			keyboard = getString(R.string.keyboard_querty);
 		} else if (mConfiguration.keyboard == Configuration.KEYBOARD_NOKEYS) {
-			keyboard = "no keyboard";
+			keyboard = getString(R.string.keyboard_no_keyboard);
 		} else {
-			keyboard = "undefined";
+			keyboard = getString(R.string.unknown);
 		}
 		mKeyboard.setText(keyboard);
 	}
@@ -225,7 +223,7 @@ public class MainActivity extends Activity {
 
 	private void initImsiFields() {
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-		mImsi.setText(telephonyManager.getSubscriberId() == null ? "unknown" :
+		mImsi.setText(telephonyManager.getSubscriberId() == null ? getString(R.string.unknown) :
 				telephonyManager.getSubscriberId());
 		mMcc.setText(mConfiguration.mcc + "");
 		mMnc.setText(mConfiguration.mnc + "");
@@ -237,9 +235,8 @@ public class MainActivity extends Activity {
 		mId.setText(Build.ID);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
-		mRadio
-				.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? "unknown" : Build.getRadioVersion
-						());
+		mRadio.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? getString(R.string.unknown) :
+				Build.getRadioVersion());
 		mHost.setText(Build.HOST);
 		mUser.setText(Build.USER);
 	}
@@ -262,16 +259,17 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("text/plain");
 
-		String subject = "Configuration of " + Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL;
+		String subject = getString(R.string.configuration_title,
+				Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL);
 		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 		intent.putExtra(Intent.EXTRA_TITLE, subject);
 		intent.putExtra(Intent.EXTRA_TEXT, text.toString());
 		return intent;
 	}
 
-	private void saveToFile()  {
+	private void saveToFile() {
 		String state = Environment.getExternalStorageState();
-		if(state.equals(Environment.MEDIA_MOUNTED)) {
+		if (state.equals(Environment.MEDIA_MOUNTED)) {
 			String name = "config_" + Build.MANUFACTURER.toUpperCase() + "_" + Build.MODEL + ".txt";
 			name = name.replaceAll(" ", "_");
 			File file = new File(Environment.getExternalStorageDirectory(), name);
@@ -280,7 +278,8 @@ public class MainActivity extends Activity {
 				writer.write(createConfigurationText().toString());
 				writer.flush();
 				writer.close();
-				Toast.makeText(this, getString(R.string.configuration_saved, name), Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, getString(R.string.configuration_saved, name), Toast.LENGTH_SHORT)
+						.show();
 			} catch (IOException e) {
 				Log.e("ConfigReader", "Can't write to file.", e);
 				Toast.makeText(this, R.string.error_saving_file, Toast.LENGTH_SHORT).show();
@@ -310,10 +309,11 @@ public class MainActivity extends Activity {
 		}
 
 		StringBuilder text = new StringBuilder();
-		String header = "Configuration of " + Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL;
+		String header = getString(R.string.configuration_title,
+				Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL);
 		text.append(header);
 		text.append("\n");
-		for (int j = 0; j < longestLineLength; j++) {
+		for (int j = 0; j < header.length(); j++) {
 			text.append("=");
 		}
 		text.append("\n\n");

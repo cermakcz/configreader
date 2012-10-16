@@ -2,7 +2,81 @@
 <resources>
     <string name="app_name">Config Reader</string>
 
+    <string name="menu_share">Share</string>
+    <string name="menu_save">Save</string>
+
+    <string name="category_display">Display</string>
+    <string name="resolution_px">Resolution [px]:</string>
+    <string name="resolution_dp">Resolution [dp]:</string>
+    <string name="resolution_usable">Usable resolution [dp]:</string>
+    <string name="smallest_width">Smallest width [dp]:</string>
+    <string name="density">Density:</string>
+    <string name="dpi">DPI:</string>
+    <string name="size_qualifier">Size qualifier:</string>
+    <string name="orientation">Orientation:</string>
+
+    <string name="category_navigation_and_keyboard">Navigation and keyboard</string>
+    <string name="touchscreen">Touchscreen:</string>
+    <string name="navigation_type">Navigation type:</string>
+    <string name="keyboard">Keyboard:</string>
+
+    <string name="category_user_preferences">User preferences</string>
+    <string name="locale">Locale:</string>
+    <string name="font_scale">Font scale:</string>
+
+    <string name="category_imsi">IMSI</string>
+    <string name="imsi">IMSI:</string>
+    <string name="mcc">MCC (Mobile Country Code):</string>
+    <string name="mnc">MNC (Mobile Network Code):</string>
+
+    <string name="category_android_system">Android system</string>
+    <string name="version">Version:</string>
+    <string name="id">ID:</string>
+    <string name="api_level">API Level:</string>
+    <string name="build_tags">Build tags:</string>
+    <string name="bootloader">Bootloader:</string>
+    <string name="radio">Radio:</string>
+    <string name="host">Host:</string>
+    <string name="user">User:</string>
+
+    <string name="category_device">Device</string>
+    <string name="manufacturer">Manufacturer:</string>
+    <string name="brand">Brand:</string>
+    <string name="model">Model:</string>
+    <string name="product">Product:</string>
+    <string name="design">Design:</string>
+    <string name="board">Board:</string>
+    <string name="hardware">Hardware:</string>
+    <string name="serial_number">Serial number:</string>
+    <string name="instruction_set">Instruction set:</string>
+
+    <string name="navigation_trackball">trackball</string>
+    <string name="navigation_wheel">wheel</string>
+    <string name="navigation_no_navigation">no navigation</string>
+    <string name="navigation_dpad">DPAD</string>
+    <string name="keyboard_12_keys">12 keys</string>
+    <string name="keyboard_no_keyboard">no keyboard</string>
+    <string name="keyboard_querty">querty</string>
+
+    <string name="touchscreen_finger">finger</string>
+    <string name="touchscreen_no_touch">no touch</string>
+
+    <string name="orientation_landscape">landscape</string>
+    <string name="oritentation_portrait">portrait</string>
+
+    <string name="screensize_small">small</string>
+    <string name="screensize_normal">normal</string>
+    <string name="screensize_large">large</string>
+    <string name="screensize_xlarge">xlarge</string>
+
+    <string name="unknown">unknown</string>
+
     <string name="error_saving_file">An error occured, file was NOT saved.</string>
-    <string name="error_storage_not_available">External storage is not available at the moment.</string>
-    <string name="configuration_saved">Configuration saved as \'%s\' to the external storage.</string>
+    <string name="error_storage_not_available">External storage is not available at the moment.
+    </string>
+    <string name="configuration_title">Configuration of %s</string>
+    <string name="configuration_saved">Configuration saved as \'%s\' to the external storage.
+    </string>
+
+
 </resources>

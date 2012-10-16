@@ -15,7 +15,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Display"
+                    android:text="@string/category_display"
                     android:layout_span="2"
                     android:layout_marginTop="0dp"
                     style="@style/Widget.Category"
@@ -26,7 +26,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resolution [px]:"
+                    android:text="@string/resolution_px"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -43,7 +43,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resolution [dp]:"
+                    android:text="@string/resolution_dp"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -59,7 +59,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Usable resolution [dp]:"
+                    android:text="@string/resolution_usable"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -76,7 +76,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Smallest width [dp]:"
+                    android:text="@string/smallest_width"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -93,7 +93,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Density:"
+                    android:text="@string/density"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -110,7 +110,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="DPI:"
+                    android:text="@string/dpi"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -127,7 +127,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Size qualifier:"
+                    android:text="@string/size_qualifier"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -145,7 +145,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Orientation:"
+                    android:text="@string/orientation"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -162,7 +162,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Navigation and keyboard"
+                    android:text="@string/category_navigation_and_keyboard"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -172,7 +172,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Touchscreen:"
+                    android:text="@string/touchscreen"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -188,7 +188,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Navigation type:"
+                    android:text="@string/navigation_type"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -204,7 +204,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Keyboard:"
+                    android:text="@string/keyboard"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -221,7 +221,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="User preferences"
+                    android:text="@string/category_user_preferences"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -231,7 +231,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Locale:"
+                    android:text="@string/locale"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -247,7 +247,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Font scale:"
+                    android:text="@string/font_scale"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -264,7 +264,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="IMSI"
+                    android:text="@string/category_imsi"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -274,7 +274,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="IMSI:"
+                    android:text="@string/imsi"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -290,7 +290,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="MCC (Mobile Country Code):"
+                    android:text="@string/mcc"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -306,7 +306,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="MNC (Mobile Network Code):"
+                    android:text="@string/mnc"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -323,7 +323,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Android system"
+                    android:text="@string/category_android_system"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -333,7 +333,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Version:"
+                    android:text="@string/version"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -349,7 +349,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="ID:"
+                    android:text="@string/id"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -365,7 +365,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="API Level:"
+                    android:text="@string/api_level"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -381,7 +381,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Build tags:"
+                    android:text="@string/build_tags"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -397,7 +397,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bootloader:"
+                    android:text="@string/bootloader"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -413,7 +413,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Radio:"
+                    android:text="@string/radio"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -429,7 +429,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Host:"
+                    android:text="@string/host"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -445,7 +445,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="User:"
+                    android:text="@string/user"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -462,7 +462,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Device"
+                    android:text="@string/category_device"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -472,7 +472,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Manufacturer:"
+                    android:text="@string/manufacturer"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -488,7 +488,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Brand:"
+                    android:text="@string/brand"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -504,7 +504,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Model:"
+                    android:text="@string/model"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -520,7 +520,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Product:"
+                    android:text="@string/product"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -536,7 +536,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Design:"
+                    android:text="@string/design"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -552,7 +552,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Board:"
+                    android:text="@string/board"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -568,7 +568,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hardware:"
+                    android:text="@string/hardware"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -584,7 +584,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Serial number:"
+                    android:text="@string/serial_number"
                     style="@style/Widget.Label"
                     />
             <TextView
@@ -600,7 +600,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Instruction set:"
+                    android:text="@string/instruction_set"
                     style="@style/Widget.Label"
                     />
             <TextView
