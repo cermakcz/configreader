@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 
 	private TextView mTouchscreen;
 	private TextView mNavigation;
+	private TextView mKeyboard;
 
 	private TextView mLocale;
 	private TextView mFontScale;
@@ -69,6 +70,7 @@ public class MainActivity extends Activity {
 
 		mTouchscreen = (TextView) findViewById(R.id.text_touchscreen);
 		mNavigation = (TextView) findViewById(R.id.text_navigation);
+		mKeyboard = (TextView) findViewById(R.id.text_keyboard);
 
 		mLocale = (TextView) findViewById(R.id.text_locale);
 		mFontScale = (TextView) findViewById(R.id.text_font_scale);
@@ -168,6 +170,18 @@ public class MainActivity extends Activity {
 			navigation = "undefined";
 		}
 		mNavigation.setText(navigation);
+
+		String keyboard = "";
+		if (mConfiguration.keyboard == Configuration.KEYBOARD_12KEY) {
+			keyboard = "12 keys";
+		} else if (mConfiguration.keyboard == Configuration.KEYBOARD_QWERTY) {
+			keyboard = "querty";
+		} else if (mConfiguration.keyboard == Configuration.KEYBOARD_NOKEYS) {
+			keyboard = "no keyboard";
+		} else {
+			keyboard = "undefined";
+		}
+		mKeyboard.setText(keyboard);
 	}
 
 	private void initUserPreferencesFields() {

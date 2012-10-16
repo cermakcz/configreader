@@ -161,7 +161,7 @@
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Navigation"
+                    android:text="Navigation and keyboard"
                     android:layout_span="2"
                     style="@style/Widget.Category"
                     />
@@ -192,6 +192,22 @@
                     />
             <TextView
                     android:id="@+id/text_navigation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="true"
+                    style="@style/Widget.Value"
+                    />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Keyboard:"
+                    style="@style/Widget.Label"
+                    />
+            <TextView
+                    android:id="@+id/text_keyboard"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="true"
