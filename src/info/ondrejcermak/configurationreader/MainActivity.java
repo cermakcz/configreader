@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MainActivity extends Activity {
+	private KernelVersionReader mKernelVersionReader;
 	private Configuration mConfiguration;
 	private ShareActionProvider mShareActionProvider;
 
@@ -47,6 +48,7 @@ public class MainActivity extends Activity {
 	private TextView mVersion;
 	private TextView mApiLevel;
 	private TextView mId;
+	private TextView mKernel;
 	private TextView mBuildTags;
 	private TextView mBootloader;
 	private TextView mRadio;
@@ -70,6 +72,8 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		mKernelVersionReader = new ConfigurationReader();
 
 		mDeviceName = (TextView) findViewById(R.id.text_device_name);
 
@@ -96,6 +100,7 @@ public class MainActivity extends Activity {
 		mVersion = (TextView) findViewById(R.id.text_version);
 		mApiLevel = (TextView) findViewById(R.id.text_api_level);
 		mId = (TextView) findViewById(R.id.text_id);
+		mKernel = (TextView) findViewById(R.id.text_kernel);
 		mBuildTags = (TextView) findViewById(R.id.text_build_tags);
 		mBootloader = (TextView) findViewById(R.id.text_bootloader);
 		mRadio = (TextView) findViewById(R.id.text_radio);
@@ -238,6 +243,8 @@ public class MainActivity extends Activity {
 		mVersion.setText(Build.VERSION.RELEASE + " " + Build.VERSION.CODENAME + ", " + Build.DISPLAY);
 		mApiLevel.setText(Build.VERSION.SDK_INT + "");
 		mId.setText(Build.ID);
+		String kernelVersion = mKernelVersionReader.getKernelVersion();
+		mKernel.setText(kernelVersion == null ? getString(R.string.unknown) : kernelVersion);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
 		mRadio.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? getString(R.string.unknown) :

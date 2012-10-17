@@ -379,6 +379,22 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/kernel"
+                        style="@style/Widget.Label"
+                        />
+                <TextView
+                        android:id="@+id/text_kernel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/unknown"
+                        style="@style/Widget.Value"
+                        />
+            </TableRow>
+            <TableRow android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@string/api_level"
                         style="@style/Widget.Label"
                         />

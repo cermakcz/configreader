@@ -32,6 +32,7 @@
     <string name="category_android_system">Android system</string>
     <string name="version">Version:</string>
     <string name="id">ID:</string>
+    <string name="kernel">Kernel</string>
     <string name="api_level">API Level:</string>
     <string name="build_tags">Build tags:</string>
     <string name="bootloader">Bootloader:</string>
@@ -77,6 +78,5 @@
     <string name="configuration_title">Configuration of %s</string>
     <string name="configuration_saved">Configuration saved as \'%s\' to the external storage.
     </string>
-
 
 </resources>
