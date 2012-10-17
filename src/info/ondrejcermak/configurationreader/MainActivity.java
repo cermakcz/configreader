@@ -19,6 +19,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MainActivity extends Activity {
+	private static final int MAX_UNDERSCORES_LENGTH = 50;
+
 	private KernelVersionReader mKernelVersionReader;
 	private Configuration mConfiguration;
 	private ShareActionProvider mShareActionProvider;
@@ -323,6 +325,8 @@ public class MainActivity extends Activity {
 			}
 		}
 
+		longestLineLength = Math.min(longestLineLength, MAX_UNDERSCORES_LENGTH);
+
 		StringBuilder text = new StringBuilder();
 		String header = getString(R.string.configuration_title,
 				Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL);
@@ -352,7 +356,7 @@ public class MainActivity extends Activity {
 				for (int j = 0; j <= longestLabelLength - labelLength; j++) {
 					text.append(" ");
 				}
-				text.append(((TextView) row.getChildAt(1)).getText());
+				text.append(((TextView) row.getChildAt(1)).getText().toString().replaceAll("\n"," "));
 				text.append("\n");
 			}
 		}
