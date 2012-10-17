@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
 	private TextView mSerialNumber;
 	private TextView mHardware;
 	private TextView mInstructionSet;
+	private String mUknownText;
 
 	/**
 	 * Called when the activity is first created.
@@ -74,6 +75,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		mKernelVersionReader = new ConfigurationReader();
+		mUknownText = getString(R.string.unknown);
 
 		mDeviceName = (TextView) findViewById(R.id.text_device_name);
 
@@ -183,7 +185,7 @@ public class MainActivity extends Activity {
 		} else if (mConfiguration.orientation == Configuration.ORIENTATION_PORTRAIT) {
 			orientation = getString(R.string.oritentation_portrait);
 		} else {
-			orientation = getString(R.string.unknown);
+			orientation = mUknownText;
 		}
 		mOrientation.setText(orientation);
 	}
@@ -195,7 +197,7 @@ public class MainActivity extends Activity {
 		} else if (mConfiguration.touchscreen == Configuration.TOUCHSCREEN_NOTOUCH) {
 			touchscreen = getString(R.string.touchscreen_no_touch);
 		} else {
-			touchscreen = getString(R.string.unknown);
+			touchscreen = mUknownText;
 		}
 		mTouchscreen.setText(touchscreen);
 
@@ -209,7 +211,7 @@ public class MainActivity extends Activity {
 		} else if (mConfiguration.navigation == Configuration.NAVIGATION_WHEEL) {
 			navigation = getString(R.string.navigation_wheel);
 		} else {
-			navigation = getString(R.string.unknown);
+			navigation = mUknownText;
 		}
 		mNavigation.setText(navigation);
 
@@ -221,7 +223,7 @@ public class MainActivity extends Activity {
 		} else if (mConfiguration.keyboard == Configuration.KEYBOARD_NOKEYS) {
 			keyboard = getString(R.string.keyboard_no_keyboard);
 		} else {
-			keyboard = getString(R.string.unknown);
+			keyboard = mUknownText;
 		}
 		mKeyboard.setText(keyboard);
 	}
@@ -233,7 +235,7 @@ public class MainActivity extends Activity {
 
 	private void initImsiFields() {
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-		mImsi.setText(telephonyManager.getSubscriberId() == null ? getString(R.string.unknown) :
+		mImsi.setText(telephonyManager.getSubscriberId() == null ? mUknownText :
 				telephonyManager.getSubscriberId());
 		mMcc.setText(mConfiguration.mcc + "");
 		mMnc.setText(mConfiguration.mnc + "");
@@ -244,11 +246,12 @@ public class MainActivity extends Activity {
 		mApiLevel.setText(Build.VERSION.SDK_INT + "");
 		mId.setText(Build.ID);
 		String kernelVersion = mKernelVersionReader.getKernelVersion();
-		mKernel.setText(kernelVersion == null ? getString(R.string.unknown) : kernelVersion);
+
+		mKernel.setText(kernelVersion == null ? mUknownText : kernelVersion);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
-		mRadio.setText(TextUtils.isEmpty(Build.getRadioVersion()) ? getString(R.string.unknown) :
-				Build.getRadioVersion());
+		mRadio.setText(
+				TextUtils.isEmpty(Build.getRadioVersion()) ? mUknownText : Build.getRadioVersion());
 		mHost.setText(Build.HOST);
 		mUser.setText(Build.USER);
 	}
