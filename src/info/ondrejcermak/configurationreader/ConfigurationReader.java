@@ -86,10 +86,10 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 			} else if (!info.isAvailable()) {
 				connections.append(" [").append(context.getString(R.string.not_available)).append("]");
 			}
-			connections.append("\n");
+			connections.append(",\n");
 		}
-		if (connections.length() > 1) {
-			connections.delete(connections.length() - 1, connections.length());
+		if (connections.length() > 2) {
+			connections.delete(connections.length() - 2, connections.length());
 		}
 		return connections.toString();
 	}
@@ -101,12 +101,16 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 		if (networkInterfaces != null) {
 			for (NetworkInterface network : Collections.list(networkInterfaces)) {
 				networks.append(network.getDisplayName());
+				networks.append(network.isLoopback() ? " loop" : "");
+				networks.append(network.isVirtual() ? " virtual" : "");
+				networks.append(network.isPointToPoint() ? " p2p" : "");
+				networks.append(network.isUp() ? " <up>" : " <down>");
 				appendIpAddresses(networks, network);
 				appendHwAddress(networks, network);
-				networks.append("\n");
+				networks.append(",\n");
 			}
-			if (networks.length() > 1) {
-				networks.delete(networks.length() - 1, networks.length());
+			if (networks.length() > 2) {
+				networks.delete(networks.length() - 2, networks.length());
 			}
 		}
 		return networks.toString();
@@ -156,7 +160,7 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 			if (formattedAddress.length() > 1) {
 				formattedAddress.delete(formattedAddress.length() - 1, formattedAddress.length());
 			}
-			networks.append(" [HW=").append(formattedAddress.toString().toLowerCase()).append("]");
+			networks.append(" [").append(formattedAddress.toString().toLowerCase()).append("]");
 		}
 	}
 
