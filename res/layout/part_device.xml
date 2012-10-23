@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_device"
+            android:layout_span="2"
+            style="@style/Widget.Category"
+            />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/manufacturer"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_manufacturer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/brand"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_brand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/model"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/product"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/design"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_design"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/board"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hardware"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_hardware"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/serial_number"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_serial_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+<TableRow android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/instruction_set"
+        style="@style/Widget.Label"
+        />
+<TextView
+        android:id="@+id/text_instruction_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+</TableRow>
+</merge>
