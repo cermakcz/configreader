@@ -29,6 +29,7 @@
             <include layout="@layout/part_navigation"/>
             <include layout="@layout/part_user_preferences"/>
             <include layout="@layout/part_imsi"/>
+            <include layout="@layout/part_connectivity"/>
             <include layout="@layout/part_system"/>
             <include layout="@layout/part_device"/>
 

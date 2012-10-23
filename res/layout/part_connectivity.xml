@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <TableRow android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/category_connectivity"
+                android:layout_span="2"
+                style="@style/Widget.Category"
+                />
+    </TableRow>
+    <TableRow android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/telephony"
+                style="@style/Widget.Label"
+                />
+        <TextView
+                android:id="@+id/text_telephony"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                style="@style/Widget.Value"
+                />
+    </TableRow>
+    <TableRow android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/connections"
+                style="@style/Widget.Label"
+                />
+        <TextView
+                android:id="@+id/text_connections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                style="@style/Widget.Value"
+                />
+    </TableRow>
+    <TableRow android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/network_interfaces"
+                style="@style/Widget.Label"
+                />
+        <TextView
+                android:id="@+id/text_network_interfaces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                style="@style/Widget.Value"
+                />
+    </TableRow>
+</merge>

@@ -1,8 +1,19 @@
 package info.ondrejcermak.configurationreader;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Collections;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,16 +23,17 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.*;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import android.widget.ShareActionProvider;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private static final int MAX_UNDERSCORES_LENGTH = 50;
 
 	private KernelVersionReader mKernelVersionReader;
+	private ConnectivityReader mConnectivityReader;
 	private Configuration mConfiguration;
 	private ShareActionProvider mShareActionProvider;
 
@@ -47,6 +59,10 @@ public class MainActivity extends Activity {
 	private TextView mMcc;
 	private TextView mMnc;
 
+	private TextView mTelephony;
+	private TextView mConnections;
+	private TextView mNetworkInterfaces;
+
 	private TextView mVersion;
 	private TextView mApiLevel;
 	private TextView mId;
@@ -66,7 +82,10 @@ public class MainActivity extends Activity {
 	private TextView mSerialNumber;
 	private TextView mHardware;
 	private TextView mInstructionSet;
+
 	private String mUknownText;
+	private String mYesText;
+	private String mNoText;
 
 	/**
 	 * Called when the activity is first created.
@@ -76,8 +95,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		mKernelVersionReader = new ConfigurationReader();
+		ConfigurationReader configurationReader = new ConfigurationReader();
+		mKernelVersionReader = configurationReader;
+		mConnectivityReader = configurationReader;
 		mUknownText = getString(R.string.unknown);
+		mYesText = getString(R.string.yes);
+		mNoText = getString(R.string.no);
 
 		mDeviceName = (TextView) findViewById(R.id.text_device_name);
 
@@ -100,6 +123,10 @@ public class MainActivity extends Activity {
 		mImsi = (TextView) findViewById(R.id.text_imsi);
 		mMcc = (TextView) findViewById(R.id.text_mcc);
 		mMnc = (TextView) findViewById(R.id.text_mnc);
+
+		mTelephony = (TextView) findViewById(R.id.text_telephony);
+		mConnections = (TextView) findViewById(R.id.text_connections);
+		mNetworkInterfaces = (TextView) findViewById(R.id.text_network_interfaces);
 
 		mVersion = (TextView) findViewById(R.id.text_version);
 		mApiLevel = (TextView) findViewById(R.id.text_api_level);
@@ -127,6 +154,7 @@ public class MainActivity extends Activity {
 		initNavigationFields();
 		initUserPreferencesFields();
 		initImsiFields();
+		initConnectivityFields();
 		initAndroidSystemFields();
 		initDeviceFields();
 	}
@@ -243,6 +271,20 @@ public class MainActivity extends Activity {
 		mMnc.setText(mConfiguration.mnc + "");
 	}
 
+	private void initConnectivityFields() {
+		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+		mTelephony.setText(
+				getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY) ? mYesText :
+						mNoText);
+		mConnections.setText(mConnectivityReader.getConnections(this));
+
+		try {
+			mNetworkInterfaces.setText(mConnectivityReader.getNetworkInterfaces());
+		} catch (SocketException e) {
+			Log.e(getClass().getSimpleName(), "Can't enumerate network interfaces.", e);
+		}
+	}
+
 	private void initAndroidSystemFields() {
 		mVersion.setText(Build.VERSION.RELEASE + " " + Build.VERSION.CODENAME + ", " + Build.DISPLAY);
 		mApiLevel.setText(Build.VERSION.SDK_INT + "");
@@ -356,7 +398,7 @@ public class MainActivity extends Activity {
 				for (int j = 0; j <= longestLabelLength - labelLength; j++) {
 					text.append(" ");
 				}
-				text.append(((TextView) row.getChildAt(1)).getText().toString().replaceAll("\n"," "));
+				text.append(((TextView) row.getChildAt(1)).getText().toString().replaceAll("\n", " "));
 				text.append("\n");
 			}
 		}
