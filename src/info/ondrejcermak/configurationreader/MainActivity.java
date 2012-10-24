@@ -3,17 +3,13 @@ package info.ondrejcermak.configurationreader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.util.Collections;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,7 +36,7 @@ public class MainActivity extends Activity {
 
 	private TextView mResolutionPx;
 	private TextView mResolutionDp;
-	private TextView mResolutionQualifier;
+	private TextView mResolutionUsable;
 	private TextView mMinWidth;
 	private TextView mDensity;
 	private TextView mDpi;
@@ -105,7 +101,7 @@ public class MainActivity extends Activity {
 
 		mResolutionPx = (TextView) findViewById(R.id.text_resolution_px);
 		mResolutionDp = (TextView) findViewById(R.id.text_resolution_dp);
-		mResolutionQualifier = (TextView) findViewById(R.id.text_resolution_qualifier);
+		mResolutionUsable = (TextView) findViewById(R.id.text_resolution_usable);
 		mMinWidth = (TextView) findViewById(R.id.text_min_width);
 		mDensity = (TextView) findViewById(R.id.text_density);
 		mDpi = (TextView) findViewById(R.id.text_dpi);
@@ -158,12 +154,13 @@ public class MainActivity extends Activity {
 		initDeviceFields();
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		if(Build.VERSION.SDK_INT >= 14) {
-			ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
-					.getActionProvider();
+		if (Build.VERSION.SDK_INT >= 14) {
+			ShareActionProvider shareActionProvider =
+					(ShareActionProvider) menu.findItem(R.id.menu_share).getActionProvider();
 			shareActionProvider.setShareIntent(getShareIntent());
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -188,17 +185,15 @@ public class MainActivity extends Activity {
 	private void initDisplayFields() {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		mResolutionPx.setText(metrics.widthPixels + " x " + metrics.heightPixels + " px");
-		mResolutionDp.setText((int) ((float) metrics.widthPixels / metrics.density) + " x " +
-				(int) ((float) metrics.heightPixels / metrics.density) + " dp");
+		int widthDp = (int) ((float) metrics.widthPixels / metrics.density);
+		int heightDp = (int) ((float) metrics.heightPixels / metrics.density);
+		mResolutionDp.setText(widthDp + " x " + heightDp + " dp");
 		mDensity.setText(metrics.density + " px/dp");
 		mDpi.setText(metrics.densityDpi + " dpi; x = " + (int) metrics.xdpi + " dpi, " +
 				"y = " + (int) metrics.ydpi +
 				" dpi");
-
-		mResolutionQualifier
-				.setText(mConfiguration.screenWidthDp + " x " + mConfiguration.screenHeightDp +
-						" dp");
-		mMinWidth.setText(mConfiguration.smallestScreenWidthDp + " dp");
+		mResolutionUsable.setText(getUsableResolution());
+		mMinWidth.setText(getSmallestWidth(widthDp, heightDp));
 		int screenSize = mConfiguration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 		String sizeQualifier = "";
 		if (screenSize == Configuration.SCREENLAYOUT_SIZE_SMALL) {
@@ -221,6 +216,39 @@ public class MainActivity extends Activity {
 			orientation = mUknownText;
 		}
 		mOrientation.setText(orientation);
+	}
+
+	/**
+	 * Gets the usable resolution. On API < 13 it's the whole screen resolution.
+	 *
+	 * @return The usable resolution.
+	 */
+	@SuppressLint("NewApi")
+	private String getUsableResolution() {
+		String usableResolution;
+		if (Build.VERSION.SDK_INT >= 13) {
+			usableResolution = mConfiguration.screenWidthDp + " x " + mConfiguration.screenHeightDp +
+					" dp";
+		} else {
+			usableResolution = mResolutionDp.getText().toString();
+		}
+		return usableResolution;
+	}
+
+	/**
+	 * Gets the smallest width.
+	 *
+	 * @return The smallest width.
+	 */
+	@SuppressLint("NewApi")
+	private String getSmallestWidth(int widthDp, int heightDp) {
+		String minWidth;
+		if (Build.VERSION.SDK_INT >= 13) {
+			minWidth = mConfiguration.smallestScreenWidthDp + " dp";
+		} else {
+			minWidth = mUknownText;
+		}
+		return minWidth;
 	}
 
 	private void initNavigationFields() {
@@ -280,7 +308,6 @@ public class MainActivity extends Activity {
 				getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY) ? mYesText :
 						mNoText);
 		mConnections.setText(mConnectivityReader.getConnections(this));
-
 		try {
 			mNetworkInterfaces.setText(mConnectivityReader.getNetworkInterfaces());
 		} catch (SocketException e) {
@@ -297,10 +324,26 @@ public class MainActivity extends Activity {
 		mKernel.setText(kernelVersion == null ? mUknownText : kernelVersion);
 		mBuildTags.setText(Build.TAGS);
 		mBootloader.setText(Build.BOOTLOADER);
-		mRadio.setText(
-				TextUtils.isEmpty(Build.getRadioVersion()) ? mUknownText : Build.getRadioVersion());
+		mRadio.setText(getRadioVersion());
 		mHost.setText(Build.HOST);
 		mUser.setText(Build.USER);
+	}
+
+	/**
+	 * Gets the radio version.
+	 *
+	 * @return The radio version.
+	 */
+	@SuppressLint("NewApi")
+	private String getRadioVersion() {
+		String radioVersion;
+		if (Build.VERSION.SDK_INT >= 14) {
+			radioVersion =
+					TextUtils.isEmpty(Build.getRadioVersion()) ? mUknownText : Build.getRadioVersion();
+		} else {
+			radioVersion = Build.RADIO;
+		}
+		return radioVersion;
 	}
 
 	private void initDeviceFields() {

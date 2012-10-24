@@ -1,0 +1,5 @@
+<resources>
+    <color name="actionbar">#77669900</color>
+    <color name="bottom_border">@android:color/holo_green_dark</color>
+    <color name="title">@android:color/holo_green_light</color>
+</resources>
