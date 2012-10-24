@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
 	private KernelVersionReader mKernelVersionReader;
 	private ConnectivityReader mConnectivityReader;
 	private Configuration mConfiguration;
-	private ShareActionProvider mShareActionProvider;
 
 	private TextView mDeviceName;
 
@@ -162,9 +161,11 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
-				.getActionProvider();
-		mShareActionProvider.setShareIntent(getShareIntent());
+		if(Build.VERSION.SDK_INT >= 14) {
+			ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
+					.getActionProvider();
+			shareActionProvider.setShareIntent(getShareIntent());
+		}
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -172,7 +173,9 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_share:
-				getShareIntent();
+				Intent shareIntent = getShareIntent();
+				Intent chooserIntent = Intent.createChooser(shareIntent, getString(R.string.menu_share));
+				startActivity(chooserIntent);
 				return true;
 			case R.id.menu_save:
 				saveToFile();
