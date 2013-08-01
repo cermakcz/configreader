@@ -18,11 +18,19 @@ public interface CpuInfoReader {
    *
    * @return The number of cores, like "4".
    */
-  public String getCores();
+  public String getProcessorCores();
 
   /**
    * Gets processor's features.
+   *
    * @return Processor's features, like "swp half thumb fastmult vfp edsp neon vfpv3 tls vfpv4".
    */
-  public String getFeatures();
+  public String getProcessorFeatures();
+
+  /**
+   * Gets processor's manufacturer.
+   *
+   * @return Processor's manufacturer, like "QUALCOMM Inc.".
+   */
+  public String getProcessorManufacturer();
 }

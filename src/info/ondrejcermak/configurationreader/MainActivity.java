@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
   private TextView mCpuType;
   private TextView mCpuCores;
   private TextView mCpuFeatures;
+  private TextView mCpuManufacturer;
 
 	private TextView mTouchscreen;
 	private TextView mNavigation;
@@ -117,6 +118,7 @@ public class MainActivity extends Activity {
     mCpuType = (TextView) findViewById(R.id.cpu_type);
     mCpuCores = (TextView) findViewById(R.id.cpu_cores);
     mCpuFeatures = (TextView) findViewById(R.id.cpu_features);
+    mCpuManufacturer = (TextView) findViewById(R.id.cpu_manufacturer);
 
     mTouchscreen = (TextView) findViewById(R.id.text_touchscreen);
 		mNavigation = (TextView) findViewById(R.id.text_navigation);
@@ -371,8 +373,9 @@ public class MainActivity extends Activity {
 
   private void initCpuFields() {
     mCpuType.setText(mCpuInfoReader.getProcessorType());
-    mCpuCores.setText(mCpuInfoReader.getCores());
-    mCpuFeatures.setText(mCpuInfoReader.getFeatures());
+    mCpuCores.setText(mCpuInfoReader.getProcessorCores());
+    mCpuFeatures.setText(mCpuInfoReader.getProcessorFeatures());
+    mCpuManufacturer.setText(mCpuInfoReader.getProcessorManufacturer());
   }
 
 	private Intent getShareIntent() {

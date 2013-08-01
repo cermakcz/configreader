@@ -17,6 +17,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.util.SparseArray;
 
 /**
  * Utility class for reading some configuration info.
@@ -24,6 +25,16 @@ import android.util.Log;
 public class ConfigurationReader implements KernelVersionReader, ConnectivityReader, CpuInfoReader {
 	private static final String FILENAME_PROC_VERSION = "/proc/version";
 	private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
+
+  private static final SparseArray<String> CPU_MANUFACTURERS = new SparseArray<String>();
+  static {
+    CPU_MANUFACTURERS.put(0x41, "ARM Limited");
+    CPU_MANUFACTURERS.put(0x44, "Digital Equipment Corporation");
+    CPU_MANUFACTURERS.put(0x4D, "Motorola, Freescale Semiconductor Inc.");
+    CPU_MANUFACTURERS.put(0x51, "QUALCOMM Inc.");
+    CPU_MANUFACTURERS.put(0x56, "Marvell Semiconductor Inc.");
+    CPU_MANUFACTURERS.put(0x69, "Intel Corporation");
+  }
 
   private Context mContext;
 
@@ -220,6 +231,7 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 	public String getProcessorType() {
     String cpuType = mContext.getString(R.string.unknown);
 		try {
+      // Processor       : ARMv7 Processor rev 2 (v7l)
       String PROC_CPUINFO_PROCESSOR_TYPE_REGEX = "Processor\\s*:\\s*(.*)";
       Pattern cpuTypePattern = Pattern.compile(PROC_CPUINFO_PROCESSOR_TYPE_REGEX);
 
@@ -239,9 +251,10 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 	}
 
   @Override
-  public String getCores() {
+  public String getProcessorCores() {
     int cores = 0;
     try {
+      // processor       : 0
       String PROC_CPUINFO_CORES_REGEX = "processor\\s*:\\s*(\\d+)";
       Pattern coresPattern = Pattern.compile(PROC_CPUINFO_CORES_REGEX);
 
@@ -259,9 +272,10 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
   }
 
   @Override
-  public String getFeatures() {
+  public String getProcessorFeatures() {
     String features = mContext.getString(R.string.unknown);
     try {
+      // Features        : swp half thumb fastmult vfp edsp neon vfpv3 tls vfpv4
       String PROC_CPUINFO_FEATURES_REGEX = "Features\\s*:\\s*(.*)";
       Pattern featuresPattern = Pattern.compile(PROC_CPUINFO_FEATURES_REGEX);
 
@@ -278,6 +292,37 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
     }
 
     return features;
+  }
+
+  @Override
+  public String getProcessorManufacturer() {
+    String manufacturer = mContext.getString(R.string.unknown);
+    try {
+      // CPU implementer : 0x51
+      String PROC_CPUINFO_MANUFACTURER_REGEX = "CPU implementer\\s*:\\s*0x([[a-f][A-F][0-9]]+)";
+      Pattern manufacturerPattern = Pattern.compile(PROC_CPUINFO_MANUFACTURER_REGEX);
+
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = manufacturerPattern.matcher(line);
+        if(matcher.matches()) {
+          try {
+            int manufacturerCode = Integer.parseInt(matcher.group(1), 16);
+            String manufacturerName = CPU_MANUFACTURERS.get(manufacturerCode);
+            if(manufacturerName != null) {
+              manufacturer = manufacturerName;
+            }
+          } catch (NumberFormatException e) {
+            // Not a hex number, we can't do anything...
+          }
+          break;
+        }
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return manufacturer;
   }
 
   /**
