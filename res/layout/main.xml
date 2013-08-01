@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        >
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:padding="10dp">
-        <TextView
-                android:id="@+id/text_device_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                android:layout_marginTop="0dp"
-                android:textAppearance="@android:style/TextAppearance.Large"
-                android:textStyle="bold"
-                android:textColor="@color/title"
-                />
-        <TableLayout
-                android:id="@+id/table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:stretchColumns="1"
-                android:shrinkColumns="1"
-                >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
-            <include layout="@layout/part_system"/>
-            <include layout="@layout/part_device"/>
-            <include layout="@layout/part_cpu"/>
-            <include layout="@layout/part_display"/>
-            <include layout="@layout/part_connectivity"/>
-            <include layout="@layout/part_imsi"/>
-            <include layout="@layout/part_navigation"/>
-            <include layout="@layout/part_user_preferences"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
 
-        </TableLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/text_device_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:textSize="30sp"
+        android:textStyle="normal"
+        android:textColor="@color/title"
+        android:fontFamily="sans-serif-light" />
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1"
+        android:shrinkColumns="1"
+        android:layout_marginBottom="@dimen/margin_vertical" >
+
+      <include layout="@layout/part_system" />
+
+      <include layout="@layout/part_device" />
+
+      <include layout="@layout/part_cpu" />
+
+      <include layout="@layout/part_display" />
+
+      <include layout="@layout/part_connectivity" />
+
+      <include layout="@layout/part_imsi" />
+
+      <include layout="@layout/part_navigation" />
+
+      <include layout="@layout/part_user_preferences" />
+
+    </TableLayout>
+  </LinearLayout>
 </ScrollView>
