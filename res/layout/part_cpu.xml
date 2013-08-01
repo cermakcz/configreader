@@ -133,4 +133,64 @@
         style="@style/Widget.Value"
         />
   </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cpu_min_freq"
+        style="@style/Widget.Label"
+        />
+
+    <TextView
+        android:id="@+id/cpu_min_freq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cpu_max_freq"
+        style="@style/Widget.Label"
+        />
+
+    <TextView
+        android:id="@+id/cpu_max_freq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cpu_cur_freq"
+        style="@style/Widget.Label"
+        />
+
+    <TextView
+        android:id="@+id/cpu_cur_freq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown"
+        style="@style/Widget.Value"
+        />
+  </TableRow>
 </merge>

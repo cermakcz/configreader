@@ -25,6 +25,12 @@ import android.util.SparseArray;
 public class ConfigurationReader implements KernelVersionReader, ConnectivityReader, CpuInfoReader {
 	private static final String FILENAME_PROC_VERSION = "/proc/version";
 	private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
+  private static final String FILENAME_SYS_CPU_MIN_FREQ =
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
+  private static final String FILENAME_SYS_CPU_MAX_FREQ =
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
+  private static final String FILENAME_SYS_CPU_CUR_FREQ =
+      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
 
   private static final SparseArray<String> CPU_MANUFACTURERS = new SparseArray<String>();
   static {
@@ -369,6 +375,60 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
     }
 
     return revision;
+  }
+
+  @Override
+  public String getProcessorMinFrequency() {
+    String frequency = mContext.getString(R.string.unknown);
+    try {
+      String frequencyKHzString = readLine(FILENAME_SYS_CPU_MIN_FREQ);
+      try {
+        Integer frequencyKHz = Integer.parseInt(frequencyKHzString);
+        frequency = frequencyKHz / 1000 + " MHz";
+      } catch (NumberFormatException e) {
+        // Most likely "Permission denied".
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return frequency;
+  }
+
+  @Override
+  public String getProcessorMaxFrequency() {
+    String frequency = mContext.getString(R.string.unknown);
+    try {
+      String frequencyKHzString = readLine(FILENAME_SYS_CPU_MAX_FREQ);
+      try {
+        Integer frequencyKHz = Integer.parseInt(frequencyKHzString);
+        frequency = frequencyKHz / 1000 + " MHz";
+      } catch (NumberFormatException e) {
+        // Most likely "Permission denied".
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return frequency;
+  }
+
+  @Override
+  public String getProcessorCurrentFrequency() {
+    String frequency = mContext.getString(R.string.unknown);
+    try {
+      String frequencyKHzString = readLine(FILENAME_SYS_CPU_CUR_FREQ);
+      try {
+        Integer frequencyKHz = Integer.parseInt(frequencyKHzString);
+        frequency = frequencyKHz / 1000 + " MHz";
+      } catch (NumberFormatException e) {
+        // Most likely "Permission denied".
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return frequency;
   }
 
   /**

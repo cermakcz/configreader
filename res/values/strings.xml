@@ -58,6 +58,9 @@
     <string name="cpu_manufacturer">Manufacturer:</string>
     <string name="cpu_architecture">Architecture:</string>
     <string name="cpu_revision">Revision:</string>
+    <string name="cpu_min_freq">Min frequency:</string>
+    <string name="cpu_max_freq">Max frequency:</string>
+    <string name="cpu_cur_freq">Current frequency:</string>
 
     <string name="category_connectivity">Connectivity</string>
     <string name="telephony">Telephony</string>

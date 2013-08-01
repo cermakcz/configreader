@@ -47,4 +47,25 @@ public interface CpuInfoReader {
    * @return Processor's revision.
    */
   public String getProcessorRevision();
+
+  /**
+   * Gets processor's minimal frequency.
+   *
+   * @return Processor's minimal frequency, like "384 MHz".
+   */
+  public String getProcessorMinFrequency();
+
+  /**
+   * Gets processor's maximal frequency.
+   *
+   * @return Processor's maximal frequency, like "1512 MHz".
+   */
+  public String getProcessorMaxFrequency();
+
+  /**
+   * Gets processor's current frequency.
+   *
+   * @return Processor's current frequency, like "980 MHz".
+   */
+  public String getProcessorCurrentFrequency();
 }

@@ -13,6 +13,8 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -26,9 +28,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	private static final int MAX_UNDERSCORES_LENGTH = 50;
+  private static final int MAX_UNDERSCORES_LENGTH = 50;
 
-	private KernelVersionReader mKernelVersionReader;
+  private static final int MESSAGE_REFRESH_CURRENT_CPU_FREQ = 1;
+  public static final int DELAY_REFRESH_CURRENT_CPU_FREQ = 2000;
+
+  private KernelVersionReader mKernelVersionReader;
 	private ConnectivityReader mConnectivityReader;
   private CpuInfoReader mCpuInfoReader;
 	private Configuration mConfiguration;
@@ -50,6 +55,9 @@ public class MainActivity extends Activity {
   private TextView mCpuManufacturer;
   private TextView mCpuArchitecture;
   private TextView mCpuRevision;
+  private TextView mCpuMinFreq;
+  private TextView mCpuMaxFreq;
+  private TextView mCpuCurFreq;
 
 	private TextView mTouchscreen;
 	private TextView mNavigation;
@@ -90,6 +98,17 @@ public class MainActivity extends Activity {
 	private String mYesText;
 	private String mNoText;
 
+  private Handler mHandler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+      if(msg.what == MESSAGE_REFRESH_CURRENT_CPU_FREQ) {
+        mHandler.removeMessages(MESSAGE_REFRESH_CURRENT_CPU_FREQ);
+        mCpuCurFreq.setText(mCpuInfoReader.getProcessorCurrentFrequency());
+        sendEmptyMessageDelayed(MESSAGE_REFRESH_CURRENT_CPU_FREQ, DELAY_REFRESH_CURRENT_CPU_FREQ);
+      }
+    }
+  };
+
 	/**
 	 * Called when the activity is first created.
 	 */
@@ -123,6 +142,9 @@ public class MainActivity extends Activity {
     mCpuManufacturer = (TextView) findViewById(R.id.cpu_manufacturer);
     mCpuArchitecture = (TextView) findViewById(R.id.cpu_architecture);
     mCpuRevision = (TextView) findViewById(R.id.cpu_revision);
+    mCpuMinFreq = (TextView) findViewById(R.id.cpu_min_freq);
+    mCpuMaxFreq = (TextView) findViewById(R.id.cpu_max_freq);
+    mCpuCurFreq = (TextView) findViewById(R.id.cpu_cur_freq);
 
     mTouchscreen = (TextView) findViewById(R.id.text_touchscreen);
 		mNavigation = (TextView) findViewById(R.id.text_navigation);
@@ -171,7 +193,19 @@ public class MainActivity extends Activity {
     initCpuFields();
 	}
 
-	@SuppressLint("NewApi")
+  @Override
+  protected void onResume() {
+    super.onPause();
+    mHandler.sendEmptyMessage(MESSAGE_REFRESH_CURRENT_CPU_FREQ);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    mHandler.removeMessages(MESSAGE_REFRESH_CURRENT_CPU_FREQ);
+  }
+
+  @SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -382,6 +416,9 @@ public class MainActivity extends Activity {
     mCpuManufacturer.setText(mCpuInfoReader.getProcessorManufacturer());
     mCpuArchitecture.setText(mCpuInfoReader.getProcessorArchitecture());
     mCpuRevision.setText(mCpuInfoReader.getProcessorRevision());
+    mCpuMinFreq.setText(mCpuInfoReader.getProcessorMinFrequency());
+    mCpuMaxFreq.setText(mCpuInfoReader.getProcessorMaxFrequency());
+    mCpuCurFreq.setText(mCpuInfoReader.getProcessorCurrentFrequency());
   }
 
 	private Intent getShareIntent() {
