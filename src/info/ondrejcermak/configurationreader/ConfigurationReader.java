@@ -26,9 +26,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 	private static final String FILENAME_PROC_VERSION = "/proc/version";
 	private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
   private static final String FILENAME_SYS_CPU_MIN_FREQ =
-      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
+      "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq";
   private static final String FILENAME_SYS_CPU_MAX_FREQ =
-      "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
+      "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq";
   private static final String FILENAME_SYS_CPU_CUR_FREQ =
       "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
 
