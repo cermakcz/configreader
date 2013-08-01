@@ -325,6 +325,52 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
     return manufacturer;
   }
 
+  @Override
+  public String getProcessorArchitecture() {
+    String architecture = mContext.getString(R.string.unknown);
+    try {
+      // CPU architecture: 7
+      String PROC_CPUINFO_ARCHITECTURE_REGEX = "CPU architecture\\s*:\\s*(.*)";
+      Pattern architecturePattern = Pattern.compile(PROC_CPUINFO_ARCHITECTURE_REGEX);
+
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = architecturePattern.matcher(line);
+        if(matcher.matches()) {
+          architecture = matcher.group(1);
+          break;
+        }
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return architecture;
+  }
+
+  @Override
+  public String getProcessorRevision() {
+    String revision = mContext.getString(R.string.unknown);
+    try {
+      // CPU revision    : 2
+      String PROC_CPUINFO_REVISON_REGEX = "CPU revision\\s*:\\s*(.*)";
+      Pattern revisionPattern = Pattern.compile(PROC_CPUINFO_REVISON_REGEX);
+
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = revisionPattern.matcher(line);
+        if(matcher.matches()) {
+          revision = matcher.group(1);
+          break;
+        }
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return revision;
+  }
+
   /**
 	 * Reads all lines from the specified file.
 	 *

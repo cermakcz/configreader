@@ -56,6 +56,8 @@
     <string name="cores">Cores:</string>
     <string name="features">Features:</string>
     <string name="cpu_manufacturer">Manufacturer:</string>
+    <string name="cpu_architecture">Architecture:</string>
+    <string name="cpu_revision">Revision:</string>
 
     <string name="category_connectivity">Connectivity</string>
     <string name="telephony">Telephony</string>

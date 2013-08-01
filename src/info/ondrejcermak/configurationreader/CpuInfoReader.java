@@ -33,4 +33,18 @@ public interface CpuInfoReader {
    * @return Processor's manufacturer, like "QUALCOMM Inc.".
    */
   public String getProcessorManufacturer();
+
+  /**
+   * Gets processor's architecture.
+   *
+   * @return Processor's architecture.
+   */
+  public String getProcessorArchitecture();
+
+  /**
+   * Gets processor's revision.
+   *
+   * @return Processor's revision.
+   */
+  public String getProcessorRevision();
 }
