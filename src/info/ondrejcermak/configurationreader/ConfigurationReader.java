@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,18 +21,30 @@ import android.util.Log;
 /**
  * Utility class for reading some configuration info.
  */
-public class ConfigurationReader implements KernelVersionReader, ConnectivityReader {
+public class ConfigurationReader implements KernelVersionReader, ConnectivityReader, CpuInfoReader {
 	private static final String FILENAME_PROC_VERSION = "/proc/version";
+	private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
 
-	@Override
+  private Context mContext;
+
+  /**
+   * Creates new instance.
+   *
+   * @param context The context to read some values from.
+   */
+  public ConfigurationReader(Context context) {
+    mContext = context.getApplicationContext();
+  }
+
+  @Override
 	public String getKernelVersion() {
 		return getFormattedKernelVersion();
 	}
 
 	@Override
-	public String getConnections(Context context) {
+	public String getConnections() {
 		ConnectivityManager connectivityManager =
-				(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+				(ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 		StringBuilder connections = new StringBuilder();
 		for (NetworkInfo info : connectivityManager.getAllNetworkInfo()) {
 			String typeName;
@@ -82,9 +96,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 			}
 			connections.append(typeName);
 			if (info.isConnected()) {
-				connections.append(" [").append(context.getString(R.string.connected)).append("]");
+				connections.append(" [").append(mContext.getString(R.string.connected)).append("]");
 			} else if (!info.isAvailable()) {
-				connections.append(" [").append(context.getString(R.string.not_available)).append("]");
+				connections.append(" [").append(mContext.getString(R.string.not_available)).append("]");
 			}
 			connections.append(",\n");
 		}
@@ -202,12 +216,96 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 				m.group(4);                            // Thu Jun 28 11:02:39 PDT 2012
 	}
 
+	@Override
+	public String getProcessorType() {
+    String cpuType = mContext.getString(R.string.unknown);
+		try {
+      String PROC_CPUINFO_PROCESSOR_TYPE_REGEX = "Processor\\s*:\\s*(.*)";
+      Pattern cpuTypePattern = Pattern.compile(PROC_CPUINFO_PROCESSOR_TYPE_REGEX);
+
+			List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = cpuTypePattern.matcher(line);
+        if(matcher.matches()) {
+          cpuType = matcher.group(1);
+          break;
+        }
+      }
+		} catch (IOException e) {
+      // Do nothing.
+		}
+
+    return cpuType;
+	}
+
+  @Override
+  public String getCores() {
+    int cores = 0;
+    try {
+      String PROC_CPUINFO_CORES_REGEX = "processor\\s*:\\s*(\\d+)";
+      Pattern coresPattern = Pattern.compile(PROC_CPUINFO_CORES_REGEX);
+
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = coresPattern.matcher(line);
+        if(matcher.matches()) {
+          cores++;
+        }
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+    return cores > 0 ? String.valueOf(cores) : mContext.getString(R.string.unknown);
+  }
+
+  @Override
+  public String getFeatures() {
+    String features = mContext.getString(R.string.unknown);
+    try {
+      String PROC_CPUINFO_FEATURES_REGEX = "Features\\s*:\\s*(.*)";
+      Pattern featuresPattern = Pattern.compile(PROC_CPUINFO_FEATURES_REGEX);
+
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for(String line: cpuInfo) {
+        Matcher matcher = featuresPattern.matcher(line);
+        if(matcher.matches()) {
+          features = matcher.group(1);
+          break;
+        }
+      }
+    } catch (IOException e) {
+      // Do nothing.
+    }
+
+    return features;
+  }
+
+  /**
+	 * Reads all lines from the specified file.
+	 *
+	 * @param filename The file to read from.
+	 * @return The list of lines.
+	 * @throws IOException if the file couldn't be read.
+	 */
+  private static List<String> readFile(String filename) throws IOException {
+    List<String> lines = new ArrayList<String>();
+    BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
+    try {
+      for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+        lines.add(line);
+      }
+    } finally {
+      reader.close();
+    }
+    return lines;
+  }
+
 	/**
 	 * Reads a line from the specified file.
 	 *
-	 * @param filename the file to read from
-	 * @return the first line, if any.
-	 * @throws IOException if the file couldn't be read
+	 * @param filename The file to read from
+	 * @return The first line, if any.
+	 * @throws IOException if the file couldn't be read.
 	 */
 	private static String readLine(String filename) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(filename), 256);

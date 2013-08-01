@@ -51,6 +51,11 @@
     <string name="serial_number">Serial number:</string>
     <string name="instruction_set">Instruction set:</string>
 
+    <string name="category_cpu">CPU</string>
+    <string name="cpu_type">Type:</string>
+    <string name="cores">Cores:</string>
+    <string name="features">Features:</string>
+
     <string name="category_connectivity">Connectivity</string>
     <string name="telephony">Telephony</string>
     <string name="connections">Connections</string>

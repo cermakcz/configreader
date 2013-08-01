@@ -31,10 +31,9 @@ public interface ConnectivityReader {
 	/**
 	 * Gets the line-break separated list of connections.
 	 *
-	 * @param context The context.
 	 * @return The line-break separated list of connections.
 	 */
-	public String getConnections(Context context);
+	public String getConnections();
 
 	/**
 	 * Gets the line-break separated list of network interfaces.

@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
 
 	private KernelVersionReader mKernelVersionReader;
 	private ConnectivityReader mConnectivityReader;
+  private CpuInfoReader mCpuInfoReader;
 	private Configuration mConfiguration;
 
 	private TextView mDeviceName;
@@ -42,6 +43,10 @@ public class MainActivity extends Activity {
 	private TextView mDpi;
 	private TextView mSizeQualifier;
 	private TextView mOrientation;
+
+  private TextView mCpuType;
+  private TextView mCpuCores;
+  private TextView mCpuFeatures;
 
 	private TextView mTouchscreen;
 	private TextView mNavigation;
@@ -90,9 +95,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		ConfigurationReader configurationReader = new ConfigurationReader();
+		ConfigurationReader configurationReader = new ConfigurationReader(this);
 		mKernelVersionReader = configurationReader;
 		mConnectivityReader = configurationReader;
+    mCpuInfoReader = configurationReader;
 		mUknownText = getString(R.string.unknown);
 		mYesText = getString(R.string.yes);
 		mNoText = getString(R.string.no);
@@ -108,7 +114,11 @@ public class MainActivity extends Activity {
 		mSizeQualifier = (TextView) findViewById(R.id.text_size_qualifier);
 		mOrientation = (TextView) findViewById(R.id.text_orientation);
 
-		mTouchscreen = (TextView) findViewById(R.id.text_touchscreen);
+    mCpuType = (TextView) findViewById(R.id.cpu_type);
+    mCpuCores = (TextView) findViewById(R.id.cpu_cores);
+    mCpuFeatures = (TextView) findViewById(R.id.cpu_features);
+
+    mTouchscreen = (TextView) findViewById(R.id.text_touchscreen);
 		mNavigation = (TextView) findViewById(R.id.text_navigation);
 		mKeyboard = (TextView) findViewById(R.id.text_keyboard);
 
@@ -152,6 +162,7 @@ public class MainActivity extends Activity {
 		initConnectivityFields();
 		initAndroidSystemFields();
 		initDeviceFields();
+    initCpuFields();
 	}
 
 	@SuppressLint("NewApi")
@@ -307,7 +318,7 @@ public class MainActivity extends Activity {
 		mTelephony.setText(
 				getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY) ? mYesText :
 						mNoText);
-		mConnections.setText(mConnectivityReader.getConnections(this));
+		mConnections.setText(mConnectivityReader.getConnections());
 		try {
 			mNetworkInterfaces.setText(mConnectivityReader.getNetworkInterfaces());
 		} catch (SocketException e) {
@@ -357,6 +368,12 @@ public class MainActivity extends Activity {
 		mHardware.setText(Build.HARDWARE);
 		mInstructionSet.setText(Build.CPU_ABI + ", " + Build.CPU_ABI2);
 	}
+
+  private void initCpuFields() {
+    mCpuType.setText(mCpuInfoReader.getProcessorType());
+    mCpuCores.setText(mCpuInfoReader.getCores());
+    mCpuFeatures.setText(mCpuInfoReader.getFeatures());
+  }
 
 	private Intent getShareIntent() {
 		StringBuilder text = createConfigurationText();

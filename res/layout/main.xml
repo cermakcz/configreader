@@ -27,6 +27,7 @@
 
             <include layout="@layout/part_system"/>
             <include layout="@layout/part_device"/>
+            <include layout="@layout/part_cpu"/>
             <include layout="@layout/part_display"/>
             <include layout="@layout/part_connectivity"/>
             <include layout="@layout/part_imsi"/>
