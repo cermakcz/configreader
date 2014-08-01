@@ -4,3 +4,4 @@ android:
     - build-tools-19.1.0
     - android-18
     - sysimg-18
+script: ant clean debug
