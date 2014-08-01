@@ -1,5 +1,5 @@
 <resources>
-    <color name="actionbar">#77669900</color>
-    <color name="bottom_border">#ff669900</color>
-    <color name="title">#ff99cc00</color>
+  <color name="actionbar">#77669900</color>
+  <color name="bottom_border">#ff669900</color>
+  <color name="title">#ff99cc00</color>
 </resources>

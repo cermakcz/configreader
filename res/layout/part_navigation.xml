@@ -1,61 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
-    <TableRow android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/category_navigation_and_keyboard"
-                android:layout_span="2"
-                style="@style/Widget.Category"
-                />
-    </TableRow>
-    <TableRow android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/touchscreen"
-                style="@style/Widget.Label"
-                />
-        <TextView
-                android:id="@+id/text_touchscreen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                style="@style/Widget.Value"
-                />
-    </TableRow>
-    <TableRow android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/navigation_type"
-                style="@style/Widget.Label"
-                />
-        <TextView
-                android:id="@+id/text_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                style="@style/Widget.Value"
-                />
-    </TableRow>
-    <TableRow android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/keyboard"
-                style="@style/Widget.Label"
-                />
-        <TextView
-                android:id="@+id/text_keyboard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                style="@style/Widget.Value"
-                />
-    </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/Widget.Category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="2"
+        android:text="@string/category_navigation_and_keyboard" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/Widget.Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/touchscreen" />
+
+    <TextView
+        android:id="@+id/text_touchscreen"
+        style="@style/Widget.Value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/Widget.Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/navigation_type" />
+
+    <TextView
+        android:id="@+id/text_navigation"
+        style="@style/Widget.Value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/Widget.Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/keyboard" />
+
+    <TextView
+        android:id="@+id/text_keyboard"
+        style="@style/Widget.Value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown" />
+  </TableRow>
 </merge>

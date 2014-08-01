@@ -1,157 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/category_android_system"
-            android:layout_span="2"
-            style="@style/Widget.Category"
-            />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
+        style="@style/Widget.Category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/version"
+        android:layout_span="2"
+        android:text="@string/category_android_system" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/version" />
+
+    <TextView
         android:id="@+id/text_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/id"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/id" />
+
+    <TextView
         android:id="@+id/text_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/api_level"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/api_level" />
+
+    <TextView
         android:id="@+id/text_api_level"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kernel"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kernel" />
+
+    <TextView
         android:id="@+id/text_kernel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user" />
+
+    <TextView
         android:id="@+id/text_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/build_tags"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/build_tags" />
+
+    <TextView
         android:id="@+id/text_build_tags"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bootloader"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bootloader" />
+
+    <TextView
         android:id="@+id/text_bootloader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/radio"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/radio" />
+
+    <TextView
         android:id="@+id/text_radio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown"
         style="@style/Widget.Value"
-        />
-</TableRow>
-<TableRow android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/host"
+        android:text="@string/unknown" />
+  </TableRow>
+
+  <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
         style="@style/Widget.Label"
-        />
-<TextView
-        android:id="@+id/text_host"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/unknown"
+        android:text="@string/host" />
+
+    <TextView
+        android:id="@+id/text_host"
         style="@style/Widget.Value"
-        />
-</TableRow>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unknown" />
+  </TableRow>
 </merge>

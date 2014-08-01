@@ -1,25 +1,28 @@
 <resources>
-    <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
-        <item name="android:background">@drawable/bg_actionbar</item>
-    </style>
 
-    <style name="Widget.Category" parent="android:TextAppearance.Holo.Small">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:layout_marginTop">@dimen/margin_vertical</item>
-        <item name="android:layout_marginBottom">@dimen/margin_vertical_small</item>
-        <item name="android:background">@drawable/bottom_border</item>
-        <item name="android:paddingLeft">@dimen/margin_horizontal</item>
-        <item name="android:paddingBottom">@dimen/margin_vertical_small</item>
-    </style>
-    <style name="Widget.Label" parent="android:TextAppearance.Holo.Small">
-        <item name="android:layout_marginRight">@dimen/margin_horizontal</item>
-        <item name="android:layout_marginLeft">@dimen/margin_horizontal</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-    <style name="Widget.Value" parent="android:TextAppearance.Holo.Small">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-        <item name="android:layout_marginRight">@dimen/margin_horizontal</item>
-    </style>
+  <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
+    <item name="android:background">@drawable/bg_actionbar</item>
+  </style>
+
+  <style name="Widget.Category" parent="android:TextAppearance.Holo.Small">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:layout_marginTop">@dimen/margin_vertical</item>
+    <item name="android:layout_marginBottom">@dimen/margin_vertical_small</item>
+    <item name="android:background">@drawable/bottom_border</item>
+    <item name="android:paddingLeft">@dimen/margin_horizontal</item>
+    <item name="android:paddingBottom">@dimen/margin_vertical_small</item>
+  </style>
+
+  <style name="Widget.Label" parent="android:TextAppearance.Holo.Small">
+    <item name="android:layout_marginRight">@dimen/margin_horizontal</item>
+    <item name="android:layout_marginLeft">@dimen/margin_horizontal</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:textColor">?android:attr/textColorPrimary</item>
+  </style>
+
+  <style name="Widget.Value" parent="android:TextAppearance.Holo.Small">
+    <item name="android:textColor">?android:attr/textColorSecondary</item>
+    <item name="android:layout_marginRight">@dimen/margin_horizontal</item>
+  </style>
 </resources>

@@ -23,8 +23,8 @@ import android.util.SparseArray;
  * Utility class for reading some configuration info.
  */
 public class ConfigurationReader implements KernelVersionReader, ConnectivityReader, CpuInfoReader {
-	private static final String FILENAME_PROC_VERSION = "/proc/version";
-	private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
+  private static final String FILENAME_PROC_VERSION = "/proc/version";
+  private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
   private static final String FILENAME_SYS_CPU_MIN_FREQ =
       "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq";
   private static final String FILENAME_SYS_CPU_MAX_FREQ =
@@ -33,6 +33,7 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
 
   private static final SparseArray<String> CPU_MANUFACTURERS = new SparseArray<String>();
+
   static {
     CPU_MANUFACTURERS.put(0x41, "ARM Limited");
     CPU_MANUFACTURERS.put(0x44, "Digital Equipment Corporation");
@@ -53,208 +54,244 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
     mContext = context.getApplicationContext();
   }
 
+  /**
+   * Reads all lines from the specified file.
+   *
+   * @param filename The file to read from.
+   * @return The list of lines.
+   * @throws IOException if the file couldn't be read.
+   */
+  private static List<String> readFile(String filename) throws IOException {
+    List<String> lines = new ArrayList<String>();
+    BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
+    try {
+      for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+        lines.add(line);
+      }
+    } finally {
+      reader.close();
+    }
+    return lines;
+  }
+
+  /**
+   * Reads a line from the specified file.
+   *
+   * @param filename The file to read from
+   * @return The first line, if any.
+   * @throws IOException if the file couldn't be read.
+   */
+  private static String readLine(String filename) throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
+    try {
+      return reader.readLine();
+    } finally {
+      reader.close();
+    }
+  }
+
   @Override
-	public String getKernelVersion() {
-		return getFormattedKernelVersion();
-	}
+  public String getKernelVersion() {
+    return getFormattedKernelVersion();
+  }
 
-	@Override
-	public String getConnections() {
-		ConnectivityManager connectivityManager =
-				(ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-		StringBuilder connections = new StringBuilder();
-		for (NetworkInfo info : connectivityManager.getAllNetworkInfo()) {
-			String typeName;
-			switch (info.getType()) {
-				case ConnectivityManager.TYPE_WIFI:
-					typeName = "wifi";
-					break;
-				case ConnectivityManager.TYPE_WIMAX:
-					typeName = "wimax";
-					break;
-				case ConnectivityManager.TYPE_BLUETOOTH:
-					typeName = "bluetooth";
-					break;
-				case ConnectivityManager.TYPE_DUMMY:
-					typeName = "dummy";
-					break;
-				case ConnectivityManager.TYPE_ETHERNET:
-					typeName = "ethernet";
-					break;
-				case ConnectivityManager.TYPE_MOBILE:
-					typeName = "mobile";
-					break;
-				case ConnectivityManager.TYPE_MOBILE_DUN:
-					typeName = "mobile dun";
-					break;
-				case ConnectivityManager.TYPE_MOBILE_HIPRI:
-					typeName = "mobile hipri";
-					break;
-				case ConnectivityManager.TYPE_MOBILE_MMS:
-					typeName = "mobile mms";
-					break;
-				case ConnectivityManager.TYPE_MOBILE_SUPL:
-					typeName = "mobile supl";
-					break;
-				case ConnectivityReader.TYPE_MOBILE_FOTA:
-					typeName = "mobile fota";
-					break;
-				case ConnectivityReader.TYPE_MOBILE_CBS:
-					typeName = "mobile cbs";
-					break;
-				case ConnectivityReader.TYPE_MOBILE_IMS:
-					typeName = "mobile ims";
-					break;
-				case ConnectivityReader.TYPE_WIFI_P2P:
-					typeName = "wifi p2p";
-					break;
-				default:
-					typeName = "unknown";
-			}
-			connections.append(typeName);
-			if (info.isConnected()) {
-				connections.append(" [").append(mContext.getString(R.string.connected)).append("]");
-			} else if (!info.isAvailable()) {
-				connections.append(" [").append(mContext.getString(R.string.not_available)).append("]");
-			}
-			connections.append(",\n");
-		}
-		if (connections.length() > 2) {
-			connections.delete(connections.length() - 2, connections.length());
-		}
-		return connections.toString();
-	}
+  @Override
+  public String getConnections() {
+    ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(
+        Context.CONNECTIVITY_SERVICE);
+    StringBuilder connections = new StringBuilder();
+    for (NetworkInfo info : connectivityManager.getAllNetworkInfo()) {
+      String typeName;
+      switch (info.getType()) {
+        case ConnectivityManager.TYPE_WIFI:
+          typeName = "wifi";
+          break;
+        case ConnectivityManager.TYPE_WIMAX:
+          typeName = "wimax";
+          break;
+        case ConnectivityManager.TYPE_BLUETOOTH:
+          typeName = "bluetooth";
+          break;
+        case ConnectivityManager.TYPE_DUMMY:
+          typeName = "dummy";
+          break;
+        case ConnectivityManager.TYPE_ETHERNET:
+          typeName = "ethernet";
+          break;
+        case ConnectivityManager.TYPE_MOBILE:
+          typeName = "mobile";
+          break;
+        case ConnectivityManager.TYPE_MOBILE_DUN:
+          typeName = "mobile dun";
+          break;
+        case ConnectivityManager.TYPE_MOBILE_HIPRI:
+          typeName = "mobile hipri";
+          break;
+        case ConnectivityManager.TYPE_MOBILE_MMS:
+          typeName = "mobile mms";
+          break;
+        case ConnectivityManager.TYPE_MOBILE_SUPL:
+          typeName = "mobile supl";
+          break;
+        case ConnectivityReader.TYPE_MOBILE_FOTA:
+          typeName = "mobile fota";
+          break;
+        case ConnectivityReader.TYPE_MOBILE_CBS:
+          typeName = "mobile cbs";
+          break;
+        case ConnectivityReader.TYPE_MOBILE_IMS:
+          typeName = "mobile ims";
+          break;
+        case ConnectivityReader.TYPE_WIFI_P2P:
+          typeName = "wifi p2p";
+          break;
+        default:
+          typeName = "unknown";
+      }
+      connections.append(typeName);
+      if (info.isConnected()) {
+        connections.append(" [").append(mContext.getString(R.string.connected)).append("]");
+      } else if (!info.isAvailable()) {
+        connections.append(" [").append(mContext.getString(R.string.not_available)).append("]");
+      }
+      connections.append(",\n");
+    }
+    if (connections.length() > 2) {
+      connections.delete(connections.length() - 2, connections.length());
+    }
+    return connections.toString();
+  }
 
-	@Override
-	public String getNetworkInterfaces() throws SocketException {
-		StringBuilder networks = new StringBuilder();
-		Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-		if (networkInterfaces != null) {
-			for (NetworkInterface network : Collections.list(networkInterfaces)) {
-				networks.append(network.getDisplayName());
-				networks.append(network.isLoopback() ? " loop" : "");
-				networks.append(network.isVirtual() ? " virtual" : "");
-				networks.append(network.isPointToPoint() ? " p2p" : "");
-				networks.append(network.isUp() ? " <up>" : " <down>");
-				appendIpAddresses(networks, network);
-				appendHwAddress(networks, network);
-				networks.append(",\n");
-			}
-			if (networks.length() > 2) {
-				networks.delete(networks.length() - 2, networks.length());
-			}
-		}
-		return networks.toString();
-	}
+  @Override
+  public String getNetworkInterfaces() throws SocketException {
+    StringBuilder networks = new StringBuilder();
+    Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+    if (networkInterfaces != null) {
+      for (NetworkInterface network : Collections.list(networkInterfaces)) {
+        networks.append(network.getDisplayName());
+        networks.append(network.isLoopback() ? " loop" : "");
+        networks.append(network.isVirtual() ? " virtual" : "");
+        networks.append(network.isPointToPoint() ? " p2p" : "");
+        networks.append(network.isUp() ? " <up>" : " <down>");
+        appendIpAddresses(networks, network);
+        appendHwAddress(networks, network);
+        networks.append(",\n");
+      }
+      if (networks.length() > 2) {
+        networks.delete(networks.length() - 2, networks.length());
+      }
+    }
+    return networks.toString();
+  }
 
-	/**
-	 * Appends list of ip addresses.
-	 *
-	 * @param networks The builder to append it to.
-	 * @param network The network to get the ip addresses from.
-	 */
-	private void appendIpAddresses(StringBuilder networks, NetworkInterface network) {
-		StringBuilder addresses = new StringBuilder();
-		for (InterfaceAddress address : network.getInterfaceAddresses()) {
-			boolean allZeroes = true;
+  /**
+   * Appends list of ip addresses.
+   *
+   * @param networks The builder to append it to.
+   * @param network The network to get the ip addresses from.
+   */
+  private void appendIpAddresses(StringBuilder networks, NetworkInterface network) {
+    StringBuilder addresses = new StringBuilder();
+    for (InterfaceAddress address : network.getInterfaceAddresses()) {
+      boolean allZeroes = true;
 
-			String formattedAddress = address.getAddress().getHostAddress();
-			int suffix = formattedAddress.indexOf("%");
-			if (suffix > 0) {
-				formattedAddress = formattedAddress.substring(0, suffix);
-			}
-			formattedAddress += "/" + address.getNetworkPrefixLength();
-			addresses.append(formattedAddress).append(", ");
-		}
-		if (addresses.length() > 2) {
-			addresses.delete(addresses.length() - 2, addresses.length());
-		}
-		if (addresses.length() > 0) {
-			networks.append(" (").append(addresses.toString().toLowerCase()).append(")");
-		}
-	}
+      String formattedAddress = address.getAddress().getHostAddress();
+      int suffix = formattedAddress.indexOf("%");
+      if (suffix > 0) {
+        formattedAddress = formattedAddress.substring(0, suffix);
+      }
+      formattedAddress += "/" + address.getNetworkPrefixLength();
+      addresses.append(formattedAddress).append(", ");
+    }
+    if (addresses.length() > 2) {
+      addresses.delete(addresses.length() - 2, addresses.length());
+    }
+    if (addresses.length() > 0) {
+      networks.append(" (").append(addresses.toString().toLowerCase()).append(")");
+    }
+  }
 
-	/**
-	 * Appends hw address.
-	 *
-	 * @param networks The builder to append it to.
-	 * @param network The network to get the hw address from.
-	 * @throws SocketException if the hw address can't be read.
-	 */
-	private void appendHwAddress(StringBuilder networks, NetworkInterface network)
-			throws SocketException {
-		StringBuilder formattedAddress = new StringBuilder();
-		if (network.getHardwareAddress() != null) {
-			for (byte octet : network.getHardwareAddress()) {
-				formattedAddress.append(String.format("%02X", octet)).append(":");
-			}
-			if (formattedAddress.length() > 1) {
-				formattedAddress.delete(formattedAddress.length() - 1, formattedAddress.length());
-			}
-			networks.append(" [").append(formattedAddress.toString().toLowerCase()).append("]");
-		}
-	}
+  /**
+   * Appends hw address.
+   *
+   * @param networks The builder to append it to.
+   * @param network The network to get the hw address from.
+   * @throws SocketException if the hw address can't be read.
+   */
+  private void appendHwAddress(StringBuilder networks, NetworkInterface network)
+      throws SocketException {
+    StringBuilder formattedAddress = new StringBuilder();
+    if (network.getHardwareAddress() != null) {
+      for (byte octet : network.getHardwareAddress()) {
+        formattedAddress.append(String.format("%02X", octet)).append(":");
+      }
+      if (formattedAddress.length() > 1) {
+        formattedAddress.delete(formattedAddress.length() - 1, formattedAddress.length());
+      }
+      networks.append(" [").append(formattedAddress.toString().toLowerCase()).append("]");
+    }
+  }
 
-	private String getFormattedKernelVersion() {
-		try {
-			return formatKernelVersion(readLine(FILENAME_PROC_VERSION));
-		} catch (IOException e) {
-			Log.e(getClass().getSimpleName(),
-					"IO Exception when getting kernel version for Device Info screen", e);
-			return null;
-		}
-	}
+  private String getFormattedKernelVersion() {
+    try {
+      return formatKernelVersion(readLine(FILENAME_PROC_VERSION));
+    } catch (IOException e) {
+      Log.e(getClass().getSimpleName(),
+          "IO Exception when getting kernel version for Device Info screen", e);
+      return null;
+    }
+  }
 
-	private String formatKernelVersion(String rawKernelVersion) {
-		// Example (see tests for more):
-		// Linux version 3.0.31-g6fb96c9 (android-build@xxx.xxx.xxx.xxx.com) \
-		//     (gcc version 4.6.x-xxx 20120106 (prerelease) (GCC) ) #1 SMP PREEMPT \
-		//     Thu Jun 28 11:02:39 PDT 2012
+  private String formatKernelVersion(String rawKernelVersion) {
+    // Example (see tests for more):
+    // Linux version 3.0.31-g6fb96c9 (android-build@xxx.xxx.xxx.xxx.com) \
+    //     (gcc version 4.6.x-xxx 20120106 (prerelease) (GCC) ) #1 SMP PREEMPT \
+    //     Thu Jun 28 11:02:39 PDT 2012
 
-		final String PROC_VERSION_REGEX = "Linux version (\\S+) " + /* group 1: "3.0.31-g6fb96c9" */
-				"\\((\\S+?)\\) " +        /* group 2: "x@y.com" (kernel builder) */
-				"(?:\\(gcc.+? \\)) " +    /* ignore: GCC version information */
-				"(#\\d+) " +              /* group 3: "#1" */
-				"(?:.*?)?" +              /* ignore: optional SMP, PREEMPT, and any CONFIG_FLAGS */
-				"((Sun|Mon|Tue|Wed|Thu|Fri|Sat).+)"; /* group 4: "Thu Jun 28 11:02:39 PDT 2012" */
+    final String PROC_VERSION_REGEX = "Linux version (\\S+) " + /* group 1: "3.0.31-g6fb96c9" */
+        "\\((\\S+?)\\) " +        /* group 2: "x@y.com" (kernel builder) */
+        "(?:\\(gcc.+? \\)) " +    /* ignore: GCC version information */
+        "(#\\d+) " +              /* group 3: "#1" */
+        "(?:.*?)?" +              /* ignore: optional SMP, PREEMPT, and any CONFIG_FLAGS */
+        "((Sun|Mon|Tue|Wed|Thu|Fri|Sat).+)"; /* group 4: "Thu Jun 28 11:02:39 PDT 2012" */
 
-		Matcher m = Pattern.compile(PROC_VERSION_REGEX).matcher(rawKernelVersion);
-		if (!m.matches()) {
-			Log.e(getClass().getSimpleName(),
-					"Regex did not match on /proc/version: " + rawKernelVersion);
-			return "Unavailable";
-		} else if (m.groupCount() < 4) {
-			Log.e(getClass().getSimpleName(),
-					"Regex match on /proc/version only returned " + m.groupCount() + " groups");
-			return "Unavailable";
-		}
-		return m.group(1) + "\n" +                 // 3.0.31-g6fb96c9
-				m.group(2) + " " + m.group(3) + "\n" + // x@y.com #1
-				m.group(4);                            // Thu Jun 28 11:02:39 PDT 2012
-	}
+    Matcher m = Pattern.compile(PROC_VERSION_REGEX).matcher(rawKernelVersion);
+    if (!m.matches()) {
+      Log.e(getClass().getSimpleName(),
+          "Regex did not match on /proc/version: " + rawKernelVersion);
+      return "Unavailable";
+    } else if (m.groupCount() < 4) {
+      Log.e(getClass().getSimpleName(),
+          "Regex match on /proc/version only returned " + m.groupCount() + " groups");
+      return "Unavailable";
+    }
+    return m.group(1) + "\n" +                 // 3.0.31-g6fb96c9
+        m.group(2) + " " + m.group(3) + "\n" + // x@y.com #1
+        m.group(4);                            // Thu Jun 28 11:02:39 PDT 2012
+  }
 
-	@Override
-	public String getProcessorType() {
+  @Override
+  public String getProcessorType() {
     String cpuType = mContext.getString(R.string.unknown);
-		try {
+    try {
       // Processor       : ARMv7 Processor rev 2 (v7l)
       String PROC_CPUINFO_PROCESSOR_TYPE_REGEX = "Processor\\s*:\\s*(.*)";
       Pattern cpuTypePattern = Pattern.compile(PROC_CPUINFO_PROCESSOR_TYPE_REGEX);
 
-			List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
+      for (String line : cpuInfo) {
         Matcher matcher = cpuTypePattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           cpuType = matcher.group(1);
           break;
         }
       }
-		} catch (IOException e) {
+    } catch (IOException e) {
       // Do nothing.
-		}
+    }
 
     return cpuType;
-	}
+  }
 
   @Override
   public String getProcessorCores() {
@@ -265,9 +302,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       Pattern coresPattern = Pattern.compile(PROC_CPUINFO_CORES_REGEX);
 
       List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      for (String line : cpuInfo) {
         Matcher matcher = coresPattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           cores++;
         }
       }
@@ -286,9 +323,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       Pattern featuresPattern = Pattern.compile(PROC_CPUINFO_FEATURES_REGEX);
 
       List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      for (String line : cpuInfo) {
         Matcher matcher = featuresPattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           features = matcher.group(1);
           break;
         }
@@ -309,13 +346,13 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       Pattern manufacturerPattern = Pattern.compile(PROC_CPUINFO_MANUFACTURER_REGEX);
 
       List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      for (String line : cpuInfo) {
         Matcher matcher = manufacturerPattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           try {
             int manufacturerCode = Integer.parseInt(matcher.group(1), 16);
             String manufacturerName = CPU_MANUFACTURERS.get(manufacturerCode);
-            if(manufacturerName != null) {
+            if (manufacturerName != null) {
               manufacturer = manufacturerName;
             }
           } catch (NumberFormatException e) {
@@ -340,9 +377,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       Pattern architecturePattern = Pattern.compile(PROC_CPUINFO_ARCHITECTURE_REGEX);
 
       List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      for (String line : cpuInfo) {
         Matcher matcher = architecturePattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           architecture = matcher.group(1);
           break;
         }
@@ -363,9 +400,9 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
       Pattern revisionPattern = Pattern.compile(PROC_CPUINFO_REVISON_REGEX);
 
       List<String> cpuInfo = readFile(FILENAME_PROC_CPUINFO);
-      for(String line: cpuInfo) {
+      for (String line : cpuInfo) {
         Matcher matcher = revisionPattern.matcher(line);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
           revision = matcher.group(1);
           break;
         }
@@ -430,40 +467,4 @@ public class ConfigurationReader implements KernelVersionReader, ConnectivityRea
 
     return frequency;
   }
-
-  /**
-	 * Reads all lines from the specified file.
-	 *
-	 * @param filename The file to read from.
-	 * @return The list of lines.
-	 * @throws IOException if the file couldn't be read.
-	 */
-  private static List<String> readFile(String filename) throws IOException {
-    List<String> lines = new ArrayList<String>();
-    BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
-    try {
-      for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-        lines.add(line);
-      }
-    } finally {
-      reader.close();
-    }
-    return lines;
-  }
-
-	/**
-	 * Reads a line from the specified file.
-	 *
-	 * @param filename The file to read from
-	 * @return The first line, if any.
-	 * @throws IOException if the file couldn't be read.
-	 */
-	private static String readLine(String filename) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(filename), 256);
-		try {
-			return reader.readLine();
-		} finally {
-			reader.close();
-		}
-	}
 }
